@@ -1,1 +1,1 @@
-const sidgi = 'hello I am sidgi'
+const sidgi = 'we are all Sidgi'
