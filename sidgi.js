@@ -1,1 +1,1 @@
-const sidgi = 'hello I am keigo this should cause a merge conflict'
+const sidgi = 'we are all Sidgi'
