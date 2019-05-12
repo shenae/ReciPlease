@@ -77,7 +77,7 @@ An explanation of the major challenges expected while building this app and how 
 - Wireframe for create recipe page: https://wireframe.cc/uoKzdw
 
 ### Entity Relationship Diagram (ERD)
-![ERD file link] (ReciPlease_for_instructors.jpg)
+https://github.com/shenae/project4/blob/master/ReciPlease_for_instructors.jpg
 
 ### Deployment
 This project will be deployed on Heroku.com. 
