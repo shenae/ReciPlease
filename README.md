@@ -49,13 +49,13 @@ Day 8: Friday    | Presentation
 ### Technologies Being Used:
 For this project, we will be using Express.js, SQL, Postgres, React, HTML and CSS. 
 
-An explanation of the major challenges you expect to face while building this app and how you foresee your team solving them:
-    * Implementing AUTH
-        Solution: Referring to past labs with Auth
-    * Deploying to Heroku
-        Solution: Working as a class to deploy on Friday
-    * Merge Conflicts
-        Solution: Communicating as a team when there is a merge conflict and agreeing to a folder structure/component hierarchy prior to beginning the project
+An explanation of the major challenges expected while building this app and how you foresee your team solving them:
+* Implementing AUTH -
+    Solution: Referring to past labs with Auth
+* Deploying to Heroku -
+    Solution: Working as a class to deploy on Friday
+* Merge Conflicts -
+    Solution: Communicating as a team when there is a merge conflict and agreeing to a folder structure/component hierarchy prior to beginning the project
 
 ### MVP
 * Display all recipes
@@ -77,7 +77,7 @@ An explanation of the major challenges you expect to face while building this ap
 * Wireframe for create recipe page: https://wireframe.cc/uoKzdw
 
 ### Entity Relationship Diagram (ERD)
-ERD link:
+ERD file link:
 
 ### Deployment
 This project will be deployed on Heroku.com. 
