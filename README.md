@@ -9,6 +9,8 @@ This is the third project assignment for General Assembly's Software Engineering
     * Shenae Simmons    https://github.com/shenae
     * Sidgi Samuels     https://github.com/Sidgi
 
+### Description
+Our recipe app will allow users to view a collection of recipes posted on our site. The user will be able to search for recipes based on ingredients, user, recipe name, and/or cuisine type. The user will also be able to update a recipe and delete a recipe.
 
 Here are the requirements: 
 
@@ -23,8 +25,6 @@ Here are the requirements:
 * Layout and style your front-end with clean & well-formatted CSS. Remember to use Grid and Flexbox!
 * Use React Router for client side routing.
 
-### Description
-Our recipe app will allow users to view a collection of recipes posted on our site. The user will be able to search for recipes based on ingredients, user, recipe name, and/or cuisine type. The user will also be able to update a recipe and delete a recipe.
 
 ### Project Schedule table
 
