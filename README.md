@@ -15,15 +15,15 @@ Our recipe app will allow users to view a collection of recipes posted on our si
 Here are the requirements: 
 
 ##### A RESTful JSON API
-* Must have an Express server exposing RESTful JSON endpoints.
-* Must have a PostgreSQL database with at least three tables: 1 user table and at least two others of your choice. There must be at least 1 pair of associated tables (one to many, many to many, etc.)
-* Must use sequelize to define models for interacting with the database.
-* Must have each of the generic controller actions (Index, Show, Create, Update, Delete) between the two non-user models.
-* Must use Express Router to organize your route endpoints.
+- Must have an Express server exposing RESTful JSON endpoints.
+- Must have a PostgreSQL database with at least three tables: 1 user table and at least two others of your choice. There must be at least 1 pair of associated tables (one to many, many to many, etc.)
+- Must use sequelize to define models for interacting with the database.
+- Must have each of the generic controller actions (Index, Show, Create, Update, Delete) between the two non-user models.
+- Must use Express Router to organize your route endpoints.
 ##### A front-end that consumes your own API
-* Permit the user to perform Index, Show, Create, Update, and Delete actions whether or not they are logged in (unless it makes sense for that information to be restricted to particular users).
-* Layout and style your front-end with clean & well-formatted CSS. Remember to use Grid and Flexbox!
-* Use React Router for client side routing.
+- Permit the user to perform Index, Show, Create, Update, and Delete actions whether or not they are logged in (unless it makes sense for that information to be restricted to particular users).
+- Layout and style your front-end with clean & well-formatted CSS. Remember to use Grid and Flexbox!
+- Use React Router for client side routing.
 
 
 ### Project Schedule table
@@ -50,11 +50,11 @@ Day 8: Friday    | Presentation
 For this project, we will be using Express.js, SQL, Postgres, React, HTML and CSS. 
 
 An explanation of the major challenges expected while building this app and how you foresee your team solving them:
-* Implementing AUTH -
+- Implementing AUTH -
     Solution: Referring to past labs with Auth
-* Deploying to Heroku -
+- Deploying to Heroku -
     Solution: Working as a class to deploy on Friday
-* Merge Conflicts -
+- Merge Conflicts -
     Solution: Communicating as a team when there is a merge conflict and agreeing to a folder structure/component hierarchy prior to beginning the project
 
 ### MVP
@@ -72,12 +72,12 @@ An explanation of the major challenges expected while building this app and how 
 * Tags
 
 ### Wireframes
-* Wireframe for main page: https://wireframe.cc/NuzbTK
-* Wireframe for recipe page: https://wireframe.cc/CjDsxw
-* Wireframe for create recipe page: https://wireframe.cc/uoKzdw
+- Wireframe for main page: https://wireframe.cc/NuzbTK
+- Wireframe for recipe page: https://wireframe.cc/CjDsxw
+- Wireframe for create recipe page: https://wireframe.cc/uoKzdw
 
 ### Entity Relationship Diagram (ERD)
-ERD file link:
+![ERD file link] (ReciPlease_for_instructors.jpg)
 
 ### Deployment
 This project will be deployed on Heroku.com. 
