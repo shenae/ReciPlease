@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # General Assembly - Project 3
 
 #### Project Name: ReciPlease
