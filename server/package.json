@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "db:init": "dropdb --if-exists restaurant_db && createdb restaurant_db",
+    "db:init": "dropdb --if-exists receipies_db -e && createdb receipies_db -e" ,
     "db:reset": "node ./resetDb",
     "db:seed": "node ./seedDb",
     "start": "nodemon server.js"

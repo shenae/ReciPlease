@@ -24,8 +24,9 @@ receipeRoute.get('/:id',async(req,res)=>{
 })
 receipeRoute.post('/create',async(req,res)=>{
   try{
+    console.log(req.body)
     const createdReceipe = await Receipies.create(req.body);
-    res.send(createdReceipe);
+    res.send('created receipie');
   }catch(e){
     res.status(404).json({ msg: e.status })    
   }
@@ -35,7 +36,7 @@ receipeRoute.delete('/delete/:id',async(req,res)=>{
     const id = req.params.id;
     const deletedReceipie = await Receipies.findByPk(id);
     await deletedReceipie.destroy();
-    res.send(`Recepie ${deletedReceipie.name} deleted`);
+    res.send(`rec deleted`);
   }catch(e){
     res.status(404).json({ msg: e.status })    
   }

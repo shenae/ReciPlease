@@ -8,6 +8,7 @@ const createModels = async()=>{
     const initialUsers = await Users.bulkCreate(users,{returning:true});
     const initialCuisines = await Cuisines.bulkCreate(cuisines);
     const initialReceipies = await Receipies.bulkCreate(receipies,{returning:true});
+
   }catch(e){
     console.log(e.message);
   }finally{
