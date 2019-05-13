@@ -36,19 +36,19 @@ class CreateRecipe extends Component {
 
           <form className="flex-column">
               <label>Recipe Title</label>
-              <input name="recipeTitle" onChange={this.onChange} placeholder="Recipe Title"/>
+              <input name="recipeTitle" onChange={this.onChange} placeholder="Recipe title..."/>
               <label>Prep Time</label>
-              <input name="prepTime" onChange={this.onChange} placeholder="Prep Time"/>
+              <input name="prepTime" onChange={this.onChange} placeholder="How long to prep?"/>
               <label>Cooking Time</label>
-              <input name="cookingTime" onChange={this.onChange} placeholder="Cooking Time"/>
+              <input name="cookingTime" onChange={this.onChange} placeholder="How long to cook?"/>
               <label>Servings</label>
-              <input name="servings" onChange={this.onChange} placeholder="Servings"/>
+              <input name="servings" onChange={this.onChange} placeholder="How many servings?"/>
               <label>Ingredients</label>
               <input name="ingredients" onChange={this.onChange} placeholder="Ingredients"/>
               <label>Directions</label>
               <input name="directions" onChange={this.onChange} placeholder="Directions"/>
               <label>Picture</label>
-              <input name="directions" onChange={this.onChange} placeholder="Directions"/>
+              <input name="picture" onChange={this.onChange} placeholder="Insert Link here"/>
               <label>Cuisines</label>
               <input name="cuisines" onChange={this.onChange} placeholder="CuisineType"/>
               <button>Submit</button>
