@@ -48,14 +48,22 @@ const Receipies = db.define('receipie',{
   },
   rating:{
     type:Sequelize.INTEGER
-  }
-})
-const Ingredients = db.define('ingredients',{
-  name:{
-    type: Sequelize.STRING,
+  },
+  ingredients:{
+    type:Sequelize.STRING,
     allowNull:false
+  },
+  directions:{
+    type:Sequelize.STRING,
+    allowNull:false
+  },
+  mealCategories:{
+    name:{
+      type: Sequelize.STRING
+    }
   }
 })
+
 const Cuisines = db.define('cuisine',{
   name:{
     type: Sequelize.STRING,
@@ -67,16 +75,7 @@ const Comments = db.define('comment',{
     type: Sequelize.STRING
   }
 })
-const Directions = db.define('direction',{
-  name:{
-    type: Sequelize.STRING
-  }
-})
-const MealCategories = db.define('meal_categirie',{
-  name:{
-    type: Sequelize.STRING
-  }
-})
+
 /* ************************************************* */
 /* *** DEFINE RELATIONSHIP *** */
 /* ** Users => Receipies (one to many) ** */
