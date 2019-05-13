@@ -1,9 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const receipeRoute = require('./routes/receipeRoute');
+const receipeRoute = require('./routes/recepieRoute');
 const cuisineRoute = require('./routes/cuisineRoute');
-const ingredientsRoute = require('./routes/ingredientsRoute');
 const usersRoute = require('./routes/userRoute');
 const morgan = require('morgan');
 const passport  = require('passport');
@@ -16,5 +15,5 @@ app.use(cors());
 app.use(passport.initialize())
 app.use('/receipies',receipeRoute);
 app.use('/cuisines',cuisineRoute);
-app.use('/users',usersRoute)
+// app.use('/users',usersRoute)
 app.listen(PORT,()=>console.log(`App is listening on: ${PORT} port`))
