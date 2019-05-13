@@ -1,4 +1,4 @@
-const {Users,Cuisines,Ingredients,Receipies} = require('./models');
+const {Users,Cuisines,Receipies} = require('./models');
 const {receipies,cuisines,users} = require('./data');
 const createModels = async()=>{
   try{
