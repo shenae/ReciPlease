@@ -30,14 +30,17 @@ receipeRoute.post('/create',async(req,res)=>{
     res.status(404).json({ msg: e.status })    
   }
 })
-receipeRoute.delete('/delete',async(req,res)=>{
+receipeRoute.delete('/delete/:id',async(req,res)=>{
   try{
-
+    const id = req.params.id;
+    const deletedReceipie = Receipies.findByPk(id);
+    deletedReceipie.destroy();
+    res.send(`Recepie ${deletedReceipie.name} deleted`);
   }catch(e){
     res.status(404).json({ msg: e.status })    
   }
 })
-receipeRoute.put('/edit',async(req,res)=>{
+receipeRoute.put('/edit/:id',async(req,res)=>{
   try{
 
   }catch(e){
