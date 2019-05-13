@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import './style.css';
 	
-class Template extends Component {
+class CreateRecipe extends Component {
 
   constructor(props) {
     super(props);
@@ -12,9 +11,10 @@ class Template extends Component {
   render() {
     return (
         <div>
+          <h1>I am CreateRecipe</h1>
         </div>
     );
   }
 }
 
-export default Template;
+export default CreateRecipe;
