@@ -75,7 +75,6 @@ const Comments = db.define('comment',{
     type: Sequelize.STRING
   }
 })
-
 /* ************************************************* */
 /* *** DEFINE RELATIONSHIP *** */
 /* ** Users => Receipies (one to many) ** */
