@@ -2,6 +2,7 @@ const passport  = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const {Users} = require('./models');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt')
 const SECRET = ' Super secret token';
 const jwtSign = (payload)=>{
   return jwt.sign(payload,SECRET)
@@ -29,19 +30,16 @@ passport.use('login', new LocalStrategy({
 }, async (email, password, done) => {
   try {
     // find user by their email
-    const user = await Users.findOne({
-      where:{
-        email:req.body.email
-      }
-    })
+    console.log(Users,'****')
+    const user = await Users.findOne({ where: { email: email }})
+    console.log(user,'$%#$%#$%')
     if (!user) {
       return done(null, false, { message: 'User not found'})
     }
 
     // compare passwords
     const validate = await bcrypt.compare(password, user.password);
-    console.log(`*** validate: ${validate} ***`)
-
+    console.log(validate,'validate')
     if (!validate) {
       return done(null, false, { message: 'Wrong password'})
     }
@@ -56,5 +54,5 @@ passport.use('login', new LocalStrategy({
 
 module.exports = {
   passport,
-  jwt
+  jwtSign
 }
