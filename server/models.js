@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 /* *** DEFINE DATABASE *** */
 const db = new Sequelize({
-  database: "receipiesDB",
+  database: "receipies_db",
   dialect: "postgres",
   define:{
     underscored:true,
@@ -50,7 +50,7 @@ const Receipies = db.define('receipie',{
     type:Sequelize.INTEGER
   },
   ingredients:{
-    type:Sequelize.STRING,
+    type:Sequelize.ARRAY,
     allowNull:false
   },
   directions:{
