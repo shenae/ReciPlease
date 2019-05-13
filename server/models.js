@@ -50,17 +50,15 @@ const Receipies = db.define('receipie',{
     type:Sequelize.INTEGER
   },
   ingredients:{
-    type:Sequelize.ARRAY,
+    type:Sequelize.ARRAY(Sequelize.TEXT),
     allowNull:false
   },
   directions:{
     type:Sequelize.STRING,
     allowNull:false
   },
-  mealCategories:{
-    name:{
+  categories:{
       type: Sequelize.STRING
-    }
   }
 })
 
