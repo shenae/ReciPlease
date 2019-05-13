@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 import './App.css';
-import Home from './components/Home/';
-import Recipe from './components/Recipe/';
-import CreateRecipe from './components/CreateRecipe/';
-
+import Home from './components/Home/Home';
+import Recipe from './components/Recipe/Recipe';
+import CreateRecipe from './components/CreateRecipe/CreateRecipe';
 
 class App extends Component {
   
@@ -17,8 +16,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-	      <nav>
+      <div className="flex-column">
+        {/*navbar*/}
+	      <nav className="flex">
 					<ul>
 					 <li>
 					   <Link to="/">Home</Link>
@@ -31,6 +31,8 @@ class App extends Component {
 					 </li>
 					</ul>
 				</nav>
+
+        {/*Routes*/}
 	      <Route exact path="/" render={()=>
           <Home />
         }
@@ -43,6 +45,7 @@ class App extends Component {
           <CreateRecipe />
         }
         />
+        
       </div>
     );
   }

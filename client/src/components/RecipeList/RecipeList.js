@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 	
-class CreateRecipe extends Component {
+class RecipeList extends Component {
 
   constructor(props) {
     super(props);
@@ -11,10 +11,12 @@ class CreateRecipe extends Component {
   render() {
     return (
         <div>
-          <h1>I am CreateRecipe</h1>
+          <img src="https://via.placeholder.com/300"/>
+          <p>Recipe Name</p>
+          <p>Cuisine Type</p>
         </div>
     );
   }
 }
 
-export default CreateRecipe;
+export default RecipeList;
