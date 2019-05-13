@@ -4,15 +4,28 @@ import './App.css';
 import Home from './components/Home/Home';
 import Recipe from './components/Recipe/Recipe';
 import CreateRecipe from './components/CreateRecipe/CreateRecipe';
+import { fetchRecipes, createRecipe, deleteRecipe, editRecipe, fetchCuisines, fetchOneCuisine, fetchUser } from './services/axios'
 
 class App extends Component {
   
   constructor(props) {
     super(props);
     this.state = {
+      recipes:"placeholder"
     };
   }
 
+   fetchRecipes = async()=>{
+    const recipes = await fetchRecipes();
+
+    this.setState({
+      recipes
+    },()=>console.log("recipes: ",recipes));
+  }
+
+  componentDidMount() {
+    this.fetchRecipes();
+  }
 
   render() {
     return (
