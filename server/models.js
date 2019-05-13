@@ -82,10 +82,6 @@ const Comments = db.define('comment',{
 Users.hasMany(Receipies);
 Receipies.belongsTo(Users);
 /* ************************************************* */
-/* ** Ingredients => Receipies (many to many) ** */
-Receipies.belongsToMany(Ingredients,{through:"receipies_ingredients_xref"});
-Ingredients.belongsToMany(Receipies,{through:"receipies_ingredients_xref"});
-/* ************************************************* */
 /* ** Cuisines => Receipies (many to many) ** */
 Receipies.belongsToMany(Cuisines,{through:"receipies_cuisines_xref"});
 Cuisines.belongsToMany(Receipies,{through:"receipies_cuisines_xref"});
@@ -95,14 +91,6 @@ Comments.belongsTo(Receipies);
 Comments.belongsTo(Users);
 Users.hasMany(Comments);
 Receipies.hasMany(Comments);
-/* ************************************************* */
-/* ** Directions => Receipies (one to many) ** */
-Directions.belongsTo(Receipies);
-Receipies.hasMany(Directions);
-/* ************************************************* */
-/* ** MealCategories => Receipies (many to many) ** */
-MealCategories.belongsToMany(Receipies,{through:"receipies_meal_categories_xref"});
-Receipies.belongsToMany(MealCategories,{through:"receipies_meal_categories_xref"})
 /* ************************************************* */
 /* ** Encrypting password of user before creating** */
 Users.beforeCreate(async(user, options) => {
@@ -121,9 +109,6 @@ module.exports = {
   db,
   Users,
   Receipies,
-  Ingredients,
   Cuisines,
-  MealCategories,
   Comments,
-  Directions
 }
