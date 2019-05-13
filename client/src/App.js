@@ -11,11 +11,12 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      recipes:"placeholder"
+      recipes:[]
     };
+    this.deleteRecipeData=this.deleteRecipeData.bind(this)
   }
 
-   fetchRecipes = async()=>{
+  fetchRecipeData = async()=>{
     const recipes = await fetchRecipes();
 
     this.setState({
@@ -23,11 +24,19 @@ class App extends Component {
     },()=>console.log("recipes: ",recipes));
   }
 
+  deleteRecipeData = async(e,id)=>{
+    e.preventDefault();
+    const recipe = await deleteRecipe(id);
+    await this.fetchRecipeData();
+  }
+
+
   componentDidMount() {
-    this.fetchRecipes();
+    this.fetchRecipeData();
   }
 
   render() {
+    const {recipes} = this.state;
     return (
       <div className="flex-column">
         {/*navbar*/}
@@ -47,7 +56,10 @@ class App extends Component {
 
         {/*Routes*/}
 	      <Route exact path="/" render={()=>
-          <Home />
+          <Home
+          recipes={recipes}
+          handleDelete={this.deleteRecipeData}
+          />
         }
         />
         <Route exact path="/recipe" render={()=>
