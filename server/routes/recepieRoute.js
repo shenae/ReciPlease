@@ -33,8 +33,8 @@ receipeRoute.post('/create',async(req,res)=>{
 receipeRoute.delete('/delete/:id',async(req,res)=>{
   try{
     const id = req.params.id;
-    const deletedReceipie = Receipies.findByPk(id);
-    deletedReceipie.destroy();
+    const deletedReceipie = await Receipies.findByPk(id);
+    await deletedReceipie.destroy();
     res.send(`Recepie ${deletedReceipie.name} deleted`);
   }catch(e){
     res.status(404).json({ msg: e.status })    
@@ -42,7 +42,13 @@ receipeRoute.delete('/delete/:id',async(req,res)=>{
 })
 receipeRoute.put('/edit/:id',async(req,res)=>{
   try{
-
+    const id = req.params.id;
+    const editedRecepie = await Receipies.update(req.body,{
+      where:{
+        id:id
+      }
+    })
+    res.send(`Recepie with id: ${id} edited`)
   }catch(e){
     res.status(404).json({ msg: e.status })    
   }
