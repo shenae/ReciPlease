@@ -67,7 +67,8 @@ const Receipies = db.define('receipie',{
 const Cuisines = db.define('cuisine',{
   name:{
     type: Sequelize.STRING,
-    allowNull:false
+    allowNull:false,
+    unique:true
   }
 })
 const Comments = db.define('comment',{
