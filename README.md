@@ -5,9 +5,9 @@
 ## Project Overview
 This is the third project assignment for General Assembly's Software Engineering Immersive program. This is a group assignment with the following members on the team: 
 
-    * Keigo Tanaka      https://github.com/KeigoAlexTanaka
-    * Shenae Simmons    https://github.com/shenae
-    * Sidgi Samuels     https://github.com/Sidgi
+    * Keigo Tanaka          https://github.com/KeigoAlexTanaka
+    * Shenae Simmons        https://github.com/shenae
+    * Sidgi Samanduyev      https://github.com/Sidgi
 
 ### Description
 Our recipe app will allow users to view a collection of recipes posted on our site. The user will be able to search for recipes based on ingredients, user, recipe name, and/or cuisine type. The user will also be able to update a recipe and delete a recipe.
@@ -77,7 +77,7 @@ An explanation of the major challenges expected while building this app and how 
 - Wireframe for create recipe page: https://wireframe.cc/uoKzdw
 
 ### Entity Relationship Diagram (ERD)
-https://github.com/shenae/project4/blob/master/ReciPlease_for_instructors.jpg
+https://github.com/shenae/project4/blob/master/Recipes_ERD.jpg
 
 ### Deployment
 This project will be deployed on Heroku.com. 
