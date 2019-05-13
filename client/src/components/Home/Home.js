@@ -23,6 +23,7 @@ class Home extends Component {
 
 
   render() {
+    const {recipes,handleDelete}= this.props;
     return (
         <div>
           {/*navbar*/}
@@ -30,9 +31,9 @@ class Home extends Component {
 
           <div className="flex">
           {/*Main*/}
-            <RecipeList />
-            <RecipeList />
-            <RecipeList />
+            { recipes.length ? recipes.map((recipe, key) => {
+            return <RecipeList key={key} recipe={recipe} handleDelete={handleDelete}/>
+        }) : <h1>Fetching recipes...</h1> }
           </div>
           
           <div className="flex">

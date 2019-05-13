@@ -9,11 +9,16 @@ class RecipeList extends Component {
   }
 
   render() {
+
+    const {categories, cuisines, directions, id, ingredients, name, picture_url,rating,userId} = this.props.recipe;
+    const {handleDelete} = this.props;
+
     return (
         <div>
-          <img src="https://via.placeholder.com/300"/>
-          <p>Recipe Name</p>
-          <p>Cuisine Type</p>
+          <img src={picture_url}/>
+          <p>{name}</p>
+          <p>{cuisines}</p>
+          <button onClick={e => handleDelete(e, id)}>DELETE</button>
         </div>
     );
   }
