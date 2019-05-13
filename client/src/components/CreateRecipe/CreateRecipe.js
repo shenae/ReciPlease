@@ -12,7 +12,8 @@ class CreateRecipe extends Component {
       servings:null,
       ingredients:null,
       directions:null,
-      picture:null
+      picture:null,
+      cuisines:null
     };
   }
 
@@ -47,7 +48,9 @@ class CreateRecipe extends Component {
               <label>Directions</label>
               <input name="directions" onChange={this.onChange} placeholder="Directions"/>
               <label>Picture</label>
-              <input name="picture" onChange={this.onChange} placeholder="Link"/>
+              <input name="directions" onChange={this.onChange} placeholder="Directions"/>
+              <label>Cuisines</label>
+              <input name="cuisines" onChange={this.onChange} placeholder="CuisineType"/>
               <button>Submit</button>
           </form>
 
