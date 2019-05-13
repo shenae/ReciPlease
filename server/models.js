@@ -43,7 +43,6 @@ const Receipies = db.define('receipie',{
     type: Sequelize.STRING,
     validate:{
       isUrl:true,
-      msg: "Name must be url"
     }
   },
   rating:{
