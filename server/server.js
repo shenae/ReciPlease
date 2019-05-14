@@ -15,5 +15,5 @@ app.use(cors());
 app.use(passport.initialize())
 app.use('/receipies',receipeRoute);
 app.use('/cuisines',cuisineRoute);
-// app.use('/users',usersRoute);
+app.use('/users',usersRoute);
 app.listen(PORT,()=>console.log(`App is listening on: ${PORT} port`))

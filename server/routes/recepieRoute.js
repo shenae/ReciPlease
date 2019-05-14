@@ -26,6 +26,22 @@ receipeRoute.post('/create',async(req,res)=>{
   try{
     console.log(req.body)
     const createdReceipe = await Receipies.create(req.body);
+    // ** cuisine ** //
+    const existingCuisine = await Cuisines.findAll({
+      where:{
+        name:req.body.cuisine
+      }
+    })
+    // console.log(existingCuisine[0].dataValues.name, '*****indif')
+    if(!existingCuisine[0].dataValues.name){
+      console.log('***inside if***')
+      const newCuisinie = await Cuisines.create(req.body.cuisine)
+      newCuisinie.addReceipies(createdReceipe);
+    }else{
+      console.log('**outside if***')
+      createdReceipe.addCuisines(existingCuisine)
+    }
+     // ************* //   
     res.send('created receipie');
   }catch(e){
     res.status(404).json({ msg: e.status })    
