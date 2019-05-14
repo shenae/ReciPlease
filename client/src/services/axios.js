@@ -38,11 +38,10 @@ export const deleteRecipe = async (id) => {
 }
 
 //needs to be tested
-export const editRecipe = async (id) => {
+export const editRecipe = async (id,data) => {
  try {
- 	 const temp={message:"hello world"};
-   const resp = await api.delete(`/receipies/edit/${id}`,temp);
-   console.log("Deleting recipe...")
+   const resp = await api.put(`/receipies/edit/${id}`,data);
+   console.log("Editing recipe...")
    return resp;
  } catch (e) {
    console.log(e);
