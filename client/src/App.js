@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 import './App.css';
+import history from './history.js';
 import Home from './components/Home/Home';
 import Recipe from './components/Recipe/Recipe';
 import CreateRecipe from './components/CreateRecipe/CreateRecipe';
@@ -40,6 +41,7 @@ class App extends Component {
     const {recipes} = this.state;
     return (
       <div className="flex-column">
+      <button onClick={()=>history.replace(`/recipe/`)}>CLICK ME</button>
         {/*navbar*/}
 	      <nav className="flex">
 					<ul>
@@ -66,11 +68,12 @@ class App extends Component {
           />
         }
         />
-        <Route exact path="/recipe" render={()=>
-          <Recipe />
+        <Route path="/recipe" render={()=>
+          <Recipe
+          />
         }
         />
-        <Route exact path="/createrecipe" render={()=>
+        <Route path="/createrecipe" render={()=>
           <CreateRecipe
           recipes={recipes}
           handleCreate={this.createRecipe}
@@ -78,7 +81,7 @@ class App extends Component {
           />
         }
         />
-        <Route exact path="/editrecipe" render={()=>
+        <Route path="/editrecipe" render={()=>
           <EditRecipe
           recipes={recipes}
           handleEdit={this.editRecipeData}
