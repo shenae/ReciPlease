@@ -4,6 +4,7 @@ import './App.css';
 import Home from './components/Home/Home';
 import Recipe from './components/Recipe/Recipe';
 import CreateRecipe from './components/CreateRecipe/CreateRecipe';
+import EditRecipe from './components/EditRecipe/EditRecipe';
 import { fetchRecipes, createRecipe, deleteRecipe, editRecipe, fetchCuisines, fetchOneCuisine, fetchUser } from './services/axios'
 import axios from 'axios';
 
@@ -51,6 +52,9 @@ class App extends Component {
 					 <li>
 					   <Link to="/createrecipe">CreateRecipe</Link>
 					 </li>
+           <li>
+             <Link to="/editrecipe">EditRecipe</Link>
+           </li>
 					</ul>
 				</nav>
 
@@ -68,7 +72,16 @@ class App extends Component {
         />
         <Route exact path="/createrecipe" render={()=>
           <CreateRecipe
+          recipes={recipes}
           handleCreate={this.createRecipe}
+          handleFetch={this.fetchRecipeData}
+          />
+        }
+        />
+        <Route exact path="/editrecipe" render={()=>
+          <EditRecipe
+          recipes={recipes}
+          handleEdit={this.editRecipeData}
           handleFetch={this.fetchRecipeData}
           />
         }
