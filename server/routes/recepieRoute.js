@@ -43,12 +43,7 @@ receipeRoute.post('/create',async(req,res)=>{
     console.log(userCreatedReceipie.dataValues.id);
     
     await createdReceipe.setUser(userCreatedReceipie);
-    res.send(createdReceipe);
-    // await db.sequelize.query(`UPDATE receipies userId:userCreatedReceipie[0].dataValues.id, recepId:createdReceipe.dataValues.id SET user_id = :userId  WHERE id = :recepId`,{ 
-    //   replacements: {userId:userCreatedReceipie[0].dataValues.id, recepId:createdReceipe.dataValues.id},
-    //   type: db.sequelize.QueryTypes.UPDATE
-    //  })
-    
+     
     if(!existingCuisine[0]){
       console.log(typeof req.body.cuisine);
       const cuisine = req.body.cuisine;
@@ -61,7 +56,7 @@ receipeRoute.post('/create',async(req,res)=>{
       await createdReceipe.addCuisines(existingCuisine);
     }
      // ************* //   
-    
+     res.send(createdReceipe); 
   }catch(e){
     res.json({ msg: e.status });
   }
