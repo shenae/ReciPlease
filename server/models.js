@@ -5,6 +5,9 @@ const bcrypt = require('bcrypt');
 const db = new Sequelize({
   database: "receipies_db",
   dialect: "postgres",
+  // ** before I added this cuisine association , auth and etc. worked 
+  // ** besides user - receipie association
+  operatorsAliases: false,
   define:{
     underscored:true,
     returning: true

@@ -1,14 +1,14 @@
 const express = require('express');
 const receipeRoute = express.Router();
-var jwtDecode = require('jwt-decode');
-const {Receipies,Cuisines,Users} = require('../models');
+let jwtDecode = require('jwt-decode');
+const {Receipies,Cuisines,Users,db} = require('../models');
 
 receipeRoute.get('/',async(req,res)=>{
   try{
     const allReceipies = await Receipies.findAll({include:[Cuisines]});
     res.json(allReceipies);
   }catch(e){
-    res.status(500).json({ msg: e.status })
+    res.status(500).json({ msg: e.status });
   }
 })
 receipeRoute.get('/:id',async(req,res)=>{
@@ -17,9 +17,9 @@ receipeRoute.get('/:id',async(req,res)=>{
     const particularReceipe = await Receipies.findByPk(id,{
       include:[Cuisines]
     });
-    res.json(particularReceipe)
+    res.json(particularReceipe);
   }catch(e){
-    res.status(404).json({ msg: e.status })
+    res.status(404).json({ msg: e.status });
   }
 })
 receipeRoute.post('/create',async(req,res)=>{
@@ -27,43 +27,43 @@ receipeRoute.post('/create',async(req,res)=>{
     console.log(req.body.token,'*** token');
     let decoded = jwtDecode(req.body.token);
     console.log(decoded.email,'***decoded token');
-    const userCreatingReceipie = await Users.findAll({
+    const userCreatedReceipie = await Users.findOne({
       where:{
         email:decoded.email
       }
     });
-    console.log(userCreatingReceipie);
-     //sidgi
     const createdReceipe = await Receipies.create(req.body);
-   
+    
     // ** cuisine ** //
     const existingCuisine = await Cuisines.findAll({
       where:{
         name:req.body.cuisine
       }
     })
-    console.log(createdReceipe, '**created receipie')
-    // *** tried to make some association between users and receipies
-    //  createdReceipe[0].receipie.dataValues.userId = userCreatingReceipie;
-    //  userCreatingReceipie.setReceps(createdReceipe);
-    // ** didnot work *** //
-     console.log(existingCuisine[0], '*****indif')
+    console.log(userCreatedReceipie.dataValues.id);
+    
+    await createdReceipe.setUser(userCreatedReceipie);
+    res.send(createdReceipe);
+    // await db.sequelize.query(`UPDATE receipies userId:userCreatedReceipie[0].dataValues.id, recepId:createdReceipe.dataValues.id SET user_id = :userId  WHERE id = :recepId`,{ 
+    //   replacements: {userId:userCreatedReceipie[0].dataValues.id, recepId:createdReceipe.dataValues.id},
+    //   type: db.sequelize.QueryTypes.UPDATE
+    //  })
+    
     if(!existingCuisine[0]){
-      console.log('***inside if***')
-       console.log(typeof req.body.cuisine)
-       const cuisine = req.body.cuisine
-      const newCuisinie = await Cuisines.create({name:cuisine})
-       console.log(newCuisinie,'**new cuisine')
-      // newCuisinie.addReceipies(createdReceipe);
-      createdReceipe.addCuisines(newCuisinie)
+      console.log(typeof req.body.cuisine);
+      const cuisine = req.body.cuisine;
+      const newCuisinie = await Cuisines.create({name:cuisine});
+      console.log(newCuisinie,'**new cuisine');
+      await createdReceipe.addCuisines(newCuisinie);
+      
     }else{
-      console.log('**outside if***')
-      createdReceipe.addCuisines(existingCuisine)
+      console.log('**outside if***');
+      await createdReceipe.addCuisines(existingCuisine);
     }
      // ************* //   
-    res.send('created receipie');
+    
   }catch(e){
-    res.status(404).json({ msg: e.status })    
+    res.json({ msg: e.status });
   }
 })
 receipeRoute.delete('/delete/:id',async(req,res)=>{
@@ -73,7 +73,7 @@ receipeRoute.delete('/delete/:id',async(req,res)=>{
     await deletedReceipie.destroy();
     res.send(`rec deleted`);
   }catch(e){
-    res.status(404).json({ msg: e.status })    
+    res.json({ msg: e.status })    
   }
 })
 receipeRoute.put('/edit/:id',async(req,res)=>{
@@ -84,9 +84,9 @@ receipeRoute.put('/edit/:id',async(req,res)=>{
         id:id
       }
     })
-    res.send(`Recepie with id: ${id} edited`)
+    res.send(`Recepie with id: ${id} edited`);
   }catch(e){
-    res.status(404).json({ msg: e.status })    
+    res.status(404).json({ msg: e.status });   
   }
 })
 module.exports = receipeRoute;
