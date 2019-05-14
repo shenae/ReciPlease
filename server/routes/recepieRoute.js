@@ -27,14 +27,26 @@ receipeRoute.post('/create',async(req,res)=>{
     console.log(req.body.token,'*** token');
     let decoded = jwtDecode(req.body.token);
     console.log(decoded.email,'***decoded token');
-    const userCreatingReceipie = await Users.findAll(decoded.email); //sidgi
+    const userCreatingReceipie = await Users.findAll({
+      where:{
+        email:decoded.email
+      }
+    });
+    console.log(userCreatingReceipie);
+     //sidgi
     const createdReceipe = await Receipies.create(req.body);
+   
     // ** cuisine ** //
     const existingCuisine = await Cuisines.findAll({
       where:{
         name:req.body.cuisine
       }
     })
+    console.log(createdReceipe, '**created receipie')
+    // *** tried to make some association between users and receipies
+    //  createdReceipe[0].receipie.dataValues.userId = userCreatingReceipie;
+    //  userCreatingReceipie.setReceps(createdReceipe);
+    // ** didnot work *** //
      console.log(existingCuisine[0], '*****indif')
     if(!existingCuisine[0]){
       console.log('***inside if***')
