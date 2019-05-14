@@ -1,7 +1,7 @@
 const express = require('express');
 const receipeRoute = express.Router();
-
-const {Receipies,Cuisines} = require('../models');
+var jwtDecode = require('jwt-decode');
+const {Receipies,Cuisines,Users} = require('../models');
 
 receipeRoute.get('/',async(req,res)=>{
   try{
@@ -24,7 +24,10 @@ receipeRoute.get('/:id',async(req,res)=>{
 })
 receipeRoute.post('/create',async(req,res)=>{
   try{
-    console.log(req.body)
+    console.log(req.body.token,'*** token');
+    let decoded = jwtDecode(req.body.token);
+    console.log(decoded.email,'***decoded token');
+    const userCreatingReceipie = await Users.findAll(decoded.email); //sidgi
     const createdReceipe = await Receipies.create(req.body);
     // ** cuisine ** //
     const existingCuisine = await Cuisines.findAll({
@@ -32,11 +35,15 @@ receipeRoute.post('/create',async(req,res)=>{
         name:req.body.cuisine
       }
     })
-    // console.log(existingCuisine[0].dataValues.name, '*****indif')
-    if(!existingCuisine[0].dataValues.name){
+     console.log(existingCuisine[0], '*****indif')
+    if(!existingCuisine[0]){
       console.log('***inside if***')
-      const newCuisinie = await Cuisines.create(req.body.cuisine)
-      newCuisinie.addReceipies(createdReceipe);
+       console.log(typeof req.body.cuisine)
+       const cuisine = req.body.cuisine
+      const newCuisinie = await Cuisines.create({name:cuisine})
+       console.log(newCuisinie,'**new cuisine')
+      // newCuisinie.addReceipies(createdReceipe);
+      createdReceipe.addCuisines(newCuisinie)
     }else{
       console.log('**outside if***')
       createdReceipe.addCuisines(existingCuisine)

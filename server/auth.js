@@ -3,7 +3,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const {Users} = require('./models');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt')
-const SECRET = ' Super secret token';
+const SECRET = 'Super secret token';
 const jwtSign = (payload)=>{
   return jwt.sign(payload,SECRET)
 }
