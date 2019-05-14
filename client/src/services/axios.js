@@ -16,10 +16,9 @@ export const fetchRecipes = async () => {
 }
 
 //needs to be tested
-export const createRecipe = async () => {
+export const createRecipe = async (data) => {
  try {
- 	 const temp={message:"hello world"};
-   const resp = await api.post('/receipies/create',temp);
+   const resp = await api.post('/receipies/create', data);
    console.log("Creating recipe...")
    return resp;
  } catch (e) {
