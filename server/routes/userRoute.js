@@ -22,36 +22,6 @@ usersRoute.post('/signup', async(req, res, next) => {
     }
   })(req, res, next)
 })
-// usersRoute.post('/signup',async(req,res)=>{
-//   try{
-//     const newUser = await Users.create(req.body);
-//     console.log(newUser);
-//     res.send(newUser);
-//   }catch(e){
-//     console.log(e.message)
-//   }
-// })
-// usersRoute.post('/login',async(req,res)=>{
-//   try{
-//     const findedUser = await Users.findOne({
-//       where:{
-//         email:req.body.email
-//       }
-//     })
-//     if(findedUser){
-//       const validate = await bcrypt.compare(req.body.password, findedUser.password);
-//       if(validate){
-//         res.send(findedUser);
-//       }else{
-//         res.send('password not right try again')
-//       }
-//     }
-//   }catch(e){
-//     console.log(e.message)
-//   }
-// })
-
-// /////////
 
 usersRoute.post('/login',async(req,res,next)=>{
   passport.authenticate('login', async(err, user, info) => {
