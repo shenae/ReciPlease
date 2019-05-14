@@ -5,6 +5,7 @@ import Home from './components/Home/Home';
 import Recipe from './components/Recipe/Recipe';
 import CreateRecipe from './components/CreateRecipe/CreateRecipe';
 import { fetchRecipes, createRecipe, deleteRecipe, editRecipe, fetchCuisines, fetchOneCuisine, fetchUser } from './services/axios'
+import axios from 'axios';
 
 class App extends Component {
   
@@ -13,23 +14,22 @@ class App extends Component {
     this.state = {
       recipes:[]
     };
-    this.deleteRecipeData=this.deleteRecipeData.bind(this)
+    this.deleteRecipeData=this.deleteRecipeData.bind(this);
+    this.fetchRecipeData=this.fetchRecipeData.bind(this);
   }
 
-  fetchRecipeData = async()=>{
+  fetchRecipeData = async () => {
     const recipes = await fetchRecipes();
-
     this.setState({
       recipes
     },()=>console.log("recipes: ",recipes));
   }
 
-  deleteRecipeData = async(e,id)=>{
+  deleteRecipeData = async (e,id)=>{
     e.preventDefault();
     const recipe = await deleteRecipe(id);
     await this.fetchRecipeData();
   }
-
 
   componentDidMount() {
     this.fetchRecipeData();
@@ -67,7 +67,10 @@ class App extends Component {
         }
         />
         <Route exact path="/createrecipe" render={()=>
-          <CreateRecipe />
+          <CreateRecipe
+          handleCreate={this.createRecipe}
+          handleFetch={this.fetchRecipeData}
+          />
         }
         />
         

@@ -29,7 +29,7 @@ class Home extends Component {
           {/*navbar*/}
           <NavBar />
 
-          <div className="flex">
+          <div className="flex-column App">
           {/*Main*/}
             { recipes.length ? recipes.map((recipe, key) => {
             return <RecipeList key={key} recipe={recipe} handleDelete={handleDelete}/>

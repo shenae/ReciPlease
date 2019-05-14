@@ -17,7 +17,6 @@ class RecipeList extends Component {
         <div>
           <img src={picture_url}/>
           <p>{name}</p>
-          <p>{cuisines}</p>
           <button onClick={e => handleDelete(e, id)}>DELETE</button>
         </div>
     );
