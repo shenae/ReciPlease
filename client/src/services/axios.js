@@ -80,3 +80,14 @@ export const fetchUser = async (id) => {
    console.log(e);
  }
 }
+
+//needs to be tested
+export const logIn = async (data) => {
+ try {
+   const resp = await api.post('/users/login',data)
+   console.log("Logging in...")
+   return resp.data;
+ } catch (e) {
+   console.log(e);
+ }
+}
