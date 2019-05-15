@@ -15,7 +15,7 @@ receipeRoute.get('/:id',async(req,res)=>{
   try{
     const id = req.params.id;
     const particularReceipe = await Receipies.findByPk(id,{
-      include:[Cuisines]
+      include:[{all: true}]
     });
     res.json(particularReceipe);
   }catch(e){
@@ -24,62 +24,77 @@ receipeRoute.get('/:id',async(req,res)=>{
 })
 receipeRoute.post('/create',async(req,res)=>{
   try{
-    console.log(req.body.token,'*** token');
     let decoded = jwtDecode(req.body.token);
-    console.log(decoded.email,'***decoded token');
+    console.log(decoded,'inside post method')
     const userCreatedReceipie = await Users.findOne({
       where:{
         email:decoded.email
       }
     });
-    const createdReceipe = await Receipies.create(req.body);
-    
+      let createdReceipe = await Receipies.create(req.body);
     // ** cuisine ** //
+    
     const existingCuisine = await Cuisines.findAll({
       where:{
         name:req.body.cuisine
       }
-    })
-    console.log(userCreatedReceipie.dataValues.id);
-    
-    await createdReceipe.setUser(userCreatedReceipie);
-     
+    })    
+    await createdReceipe.setUser(userCreatedReceipie);     
     if(!existingCuisine[0]){
-      console.log(typeof req.body.cuisine);
       const cuisine = req.body.cuisine;
       const newCuisinie = await Cuisines.create({name:cuisine});
-      console.log(newCuisinie,'**new cuisine');
       await createdReceipe.addCuisines(newCuisinie);
       
     }else{
       console.log('**outside if***');
       await createdReceipe.addCuisines(existingCuisine);
     }
+    res.send('receipie created'); 
      // ************* //   
-     res.send(createdReceipe); 
   }catch(e){
     res.json({ msg: e.status });
   }
 })
 receipeRoute.delete('/delete/:id',async(req,res)=>{
   try{
-    const id = req.params.id;
-    const deletedReceipie = await Receipies.findByPk(id);
-    await deletedReceipie.destroy();
-    res.send(`rec deleted`);
+    let decoded = jwtDecode(req.body.token);
+    console.log(decoded,'in delete')
+    const userCreatedReceipie = await Users.findOne({
+      where:{
+        email:decoded.email
+      }
+    });
+    if(userCreatedReceipie){
+      const id = req.params.id;
+      const deletedReceipie = await Receipies.findByPk(id);
+      await deletedReceipie.destroy();
+      res.send(`recepie deleted deleted`);
+    }else{
+      res.send('user is not autorized')
+    }
   }catch(e){
-    res.json({ msg: e.status })    
+    res.send(e.messge)    
   }
 })
 receipeRoute.put('/edit/:id',async(req,res)=>{
   try{
-    const id = req.params.id;
-    const editedRecepie = await Receipies.update(req.body,{
+    let decoded = jwtDecode(req.body.token);
+    const userCreatedReceipie = await Users.findOne({
       where:{
-        id:id
+        email:decoded.email
       }
-    })
-    res.send(`Recepie with id: ${id} edited`);
+    });
+    if(userCreatedReceipie){
+      const id = req.params.id;
+      const editedRecepie = await Receipies.update(req.body,{
+        where:{
+          id:id
+        }
+      })
+      res.send(`Recepie with id: ${id} edited`);
+    }else{
+      res.send('You are not authorized to edit recepie')
+    }
   }catch(e){
     res.status(404).json({ msg: e.status });   
   }
