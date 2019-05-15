@@ -11,7 +11,7 @@ class LogIn extends Component {
 
           <div className="flex-column">
           {/*Main*/}
-          <form className="flex-column">
+          <form className="flex-column" onSubmit={this.props.handleLogin}>
           
           <h1>Log In</h1>
 

@@ -2,12 +2,6 @@ import React, { Component } from 'react';
 	
 class RecipeList extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-
   render() {
 
     const {categories, cuisines, directions, id, ingredients, name, picture_url,rating,userId} = this.props.recipe;

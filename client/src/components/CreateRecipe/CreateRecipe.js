@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import NavBar from '../NavBar/NavBar'
-import axios from 'axios';
-import { fetchRecipes, createRecipe, deleteRecipe, editRecipe, fetchCuisines, fetchOneCuisine, fetchUser } from '../../services/axios'
+import { createRecipe} from '../../services/axios'
   
 class CreateRecipe extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
 
   createRecipeData = async (e) => {
     e.preventDefault();
@@ -21,11 +14,10 @@ class CreateRecipe extends Component {
     "ingredients":[formData.get("ingredients")],
     "directions":formData.get("directions"),
     "categories":formData.get("categories"),
-    "cuisine": formData.get("cuisine")
+    "cuisine": formData.get("cuisine"),
+    "token": localStorage.getItem("token")
     };
-    console.log(data);
     const recipe = await createRecipe(data);
-    console.log(recipe.data);
     await this.props.handleFetch();
   }
 

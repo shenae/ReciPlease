@@ -8,8 +8,9 @@ import CreateRecipe from './components/CreateRecipe/CreateRecipe';
 import EditRecipe from './components/EditRecipe/EditRecipe';
 import SignUp from './components/SignUp/SignUp';
 import LogIn from './components/LogIn/LogIn';
-import { fetchRecipes, createRecipe, deleteRecipe, editRecipe, fetchCuisines, fetchOneCuisine, fetchUser } from './services/axios';
+import { fetchRecipes, createRecipe, deleteRecipe, editRecipe, fetchCuisines, fetchOneCuisine, fetchUser, logIn, signUp } from './services/axios';
 import axios from 'axios';
+
 
 class App extends Component {
   
@@ -20,6 +21,9 @@ class App extends Component {
     };
     this.deleteRecipeData=this.deleteRecipeData.bind(this);
     this.fetchRecipeData=this.fetchRecipeData.bind(this);
+    this.submitLogIn=this.submitLogIn.bind(this);
+    this.submitSignUp=this.submitSignUp.bind(this);
+    this.submitLogOut=this.submitLogOut.bind(this);
   }
 
   fetchRecipeData = async () => {
@@ -37,41 +41,56 @@ class App extends Component {
 
   submitLogIn = async (e) => {
     e.preventDefault();
-    // const formData = new FormData(e.target);
+    const formData = new FormData(e.target);
     const data = {
-      "name":"sidgi",
-      "email":"example@gmail.com",
-      "password":"123456"
+      "email":formData.get("email"),
+      "password":formData.get("password")
     };
-    const resp = await axios.post(`http://localhost:4567/users/login`, data);
-    const token = resp.data.token;
+    const resp = await logIn(data);
+    const token = resp.token;
     localStorage.setItem('token', token);
-    console.log(token);
+  }
+
+  submitLogOut = async (e) => {
+    e.preventDefault();
+    localStorage.setItem('token', "");
+    if (!localStorage.getItem('token')){
+      console.log("Logged out")
+    }
+    history.push('/');
   }
 
   submitSignUp = async (e) => {
     e.preventDefault();
-    // const formData = new FormData(e.target);
+    const formData = new FormData(e.target);
     const data = {
-      "email":"example@gmail.com",
-      "password":"123456"
+      "name" : formData.get("firstName")+" "+formData.get("lastName"),
+      "email": formData.get("email"),
+      "password": formData.get("password")
     };
-    const resp = await axios.post(`http://localhost:4567/users/login`, data);
-    const token = resp.data.token;
+    const resp = await signUp(data);
+    const token = resp.token;
     localStorage.setItem('token', token);
-    console.log(token);
   }
 
+  navigateHome = () =>{
+    history.push('/login');
+    history.go(0);
+    console.log(history);
+  }
   componentDidMount() {
     this.fetchRecipeData();
   }
+
+
 
   render() {
     const {recipes} = this.state;
     return (
       <div className="flex-column">
-      <button onClick={()=>history.replace(`/recipe/`)}>CLICK ME</button>
-      <button onClick={this.submitLogIn}>LOGIN</button>
+      <button onClick={this.submitLogOut}>LOG OUT</button>
+      <button onClick={this.navigateHome}>LOGIN</button>
+
         {/*navbar*/}
 	      <nav className="flex">
 					<ul>
@@ -104,12 +123,12 @@ class App extends Component {
           />
         }
         />
-        <Route path="/recipe" render={()=>
+        <Route exact path="/recipe" render={()=>
           <Recipe
           />
         }
         />
-        <Route path="/createrecipe" render={()=>
+        <Route exact path="/createrecipe" render={()=>
           <CreateRecipe
           recipes={recipes}
           handleCreate={this.createRecipe}
@@ -117,7 +136,7 @@ class App extends Component {
           />
         }
         />
-        <Route path="/editrecipe" render={()=>
+        <Route exact path="/editrecipe" render={()=>
           <EditRecipe
           recipes={recipes}
           handleEdit={this.editRecipeData}
@@ -125,13 +144,15 @@ class App extends Component {
           />
         }
         />
-        <Route path="/login" render={()=>
+        <Route exact path="/login" render={()=>
           <LogIn
+          handleLogin={this.submitLogIn}
           />
         }
         />
-        <Route path="/signup" render={()=>
+        <Route exact path="/signup" render={()=>
           <SignUp
+          handleSignUp={this.submitSignUp}
           />
         }
         />

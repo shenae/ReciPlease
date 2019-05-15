@@ -4,12 +4,6 @@ import { fetchRecipes, createRecipe, deleteRecipe, editRecipe, fetchCuisines, fe
 import axios from 'axios';
   
 class EditRecipe extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
   
   editRecipeData = async (e,id)=>{
     e.preventDefault();
