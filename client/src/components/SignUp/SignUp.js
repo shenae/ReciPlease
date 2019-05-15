@@ -11,7 +11,7 @@ class SignUp extends Component {
 
           <div className="flex-column">
           {/*Main*/}
-          <form className="flex-column">
+          <form className="flex-column" onSubmit={this.props.handleSignUp}>
           
           <h1>Sign Up</h1>
 

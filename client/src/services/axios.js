@@ -91,3 +91,14 @@ export const logIn = async (data) => {
    console.log(e);
  }
 }
+
+//needs to be tested
+export const signUp = async (data) => {
+ try {
+   const resp = await api.post('/users/signup',data)
+   console.log("Creating new user...")
+   return resp.data;
+ } catch (e) {
+   console.log(e);
+ }
+}
