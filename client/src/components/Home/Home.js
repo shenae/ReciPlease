@@ -27,7 +27,8 @@ class Home extends Component {
     return (
         <div>
           {/*navbar*/}
-          <NavBar />
+          <NavBar
+          navigateToCreateRecipe={this.props.navigateToCreateRecipe}/>
 
           <div className="flex-column App">
           {/*Main*/}
@@ -36,15 +37,7 @@ class Home extends Component {
         }) : <h1>Fetching recipes...</h1> }
           </div>
           
-          <div className="flex">
-          {/*Filter&CreateRecipe*/}
-            <form>
-              <label>Filter</label>
-              <input name="recipeFilter" onChange={this.onChange} placeholder="Filter Recipes"/>
-              <button>Click me</button>
-            </form>
-            <button>Create Recipe</button>
-          </div>
+          
         </div>
     );
   }

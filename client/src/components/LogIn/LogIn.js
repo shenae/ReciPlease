@@ -8,23 +8,23 @@ class LogIn extends Component {
         <div>
           {/*navbar*/}
           <NavBar />
-
+          <div className="login-display">
           <div className="flex-column">
           {/*Main*/}
           <form className="flex-column" onSubmit={this.props.handleLogin}>
-          
           <h1>Log In</h1>
 
-          <label>Email</label>
+          <label id="label-input">Email:</label>
           <input type="email" name="email" placeholder="Enter your email"/>
 
-          <label>Password</label>
+          <label id="label-input">Password:</label>
           <input type="password" name="password"/>
           
           <button>Submit</button>
         </form>
+            
           </div>
-
+            </div>
         </div>
     );
   }
