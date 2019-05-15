@@ -8,7 +8,7 @@ class SignUp extends Component {
         <div>
           {/*navbar*/}
           <NavBar />
-
+          <div className="signup-display">
           <div className="flex-column">
           {/*Main*/}
           <form className="flex-column" onSubmit={this.props.handleSignUp}>
@@ -23,10 +23,10 @@ class SignUp extends Component {
           <input type="password" name="password"/>
           <label>Email</label>
           <input type="email" name="email" placeholder="Enter your email"/>
-          <button>Submit</button>
+          <button id="button-submit">Submit</button>
         </form>
           </div>
-
+          </div>
         </div>
     );
   }
