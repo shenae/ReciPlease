@@ -20,7 +20,7 @@ class LogIn extends Component {
           <label id="label-input">Password:</label>
           <input type="password" name="password"/>
           
-          <button>Submit</button>
+          <button id="button-submit">Submit</button>
         </form>
             
           </div>

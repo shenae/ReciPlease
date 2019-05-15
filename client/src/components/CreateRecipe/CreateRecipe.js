@@ -33,19 +33,13 @@ class CreateRecipe extends Component {
               <div className="create-1">
                   <label id="label-input">Recipe Title:</label>
                   <input name="name" placeholder="Recipe title..."/>
-                
-                  {/* <div className="box-3"> */}
                     <label id="label-input">Ingredients:</label>
                     <input name="ingredients" placeholder="Ingredients"/>
-                  {/* </div> */}
-                  {/* <div className="box-5"> */}
+              
                     <label id="label-input">Directions:  </label>
                     {/* <input id="input-directions" type="textarea" name="directions" placeholder="Directions"/> */}
-                    <textarea id="input-directions" name="directions" placeholder="Directions" />
-                  {/* </div> */}
+                  <textarea id="input-directions" name="directions" placeholder="Directions" />
               </div>
-            
-
               <div className="create-2">
                 <label id="label-input">Picture:</label>
                 <input name="picture_url" placeholder="Insert Link here"/>

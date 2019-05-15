@@ -162,6 +162,7 @@ class App extends Component {
        <div className="flex-row">
       <button id="button-login" onClick={this.navigateHome}>LOGIN</button>
       <button id="button-logout" onClick={this.submitLogOut}>LOG OUT</button>
+      <button id="button-signup">SIGNUP</button>
       </div>
       </div>
     );

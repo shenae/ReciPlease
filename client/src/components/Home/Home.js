@@ -32,8 +32,8 @@ class Home extends Component {
 
           <div className="flex-column App">
           {/*Main*/}
-            { recipes.length ? recipes.map((recipe, key) => {
-            return <RecipeList key={key} recipe={recipe} handleDelete={handleDelete}/>
+            { recipes ? recipes.map((recipe, key) => {
+            return <RecipeList className="recipe-list" key={key} recipe={recipe} handleDelete={handleDelete}/>
         }) : <h1>Fetching recipes...</h1> }
           </div>
           
