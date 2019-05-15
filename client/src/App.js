@@ -10,6 +10,7 @@ import SignUp from './components/SignUp/SignUp';
 import LogIn from './components/LogIn/LogIn';
 import { fetchRecipes, createRecipe, deleteRecipe, editRecipe, fetchCuisines, fetchOneCuisine, fetchUser, logIn, signUp } from './services/axios';
 import axios from 'axios';
+import NavBar from './components/NavBar/NavBar';
 
 
 class App extends Component {
@@ -78,6 +79,10 @@ class App extends Component {
     history.go(0);
     console.log(history);
   }
+  navigateToCreateRecipe = () => {
+    history.push('createrecipe');
+    history.go(0);
+  }
   componentDidMount() {
     this.fetchRecipeData();
   }
@@ -87,12 +92,9 @@ class App extends Component {
   render() {
     const {recipes} = this.state;
     return (
-      <div className="flex-column">
-      <button onClick={this.submitLogOut}>LOG OUT</button>
-      <button onClick={this.navigateHome}>LOGIN</button>
-
+    <div className="flex-column">
         {/*navbar*/}
-	      <nav className="flex">
+	      {/* <nav className="flex">
 					<ul>
 					 <li>
 					   <Link to="/">Home</Link>
@@ -113,13 +115,14 @@ class App extends Component {
              <Link to="/signup">SignUp</Link>
            </li>
 					</ul>
-				</nav>
+				</nav> */}
 
         {/*Routes*/}
 	      <Route exact path="/" render={()=>
           <Home
           recipes={recipes}
           handleDelete={this.deleteRecipeData}
+          navigateToCreateRecipe={this.navigateToCreateRecipe}
           />
         }
         />
@@ -156,7 +159,10 @@ class App extends Component {
           />
         }
         />
-        
+       <div className="flex-row">
+      <button id="button-login" onClick={this.navigateHome}>LOGIN</button>
+      <button id="button-logout" onClick={this.submitLogOut}>LOG OUT</button>
+      </div>
       </div>
     );
   }

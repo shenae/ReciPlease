@@ -26,28 +26,49 @@ class CreateRecipe extends Component {
         <div>
           {/*navbar*/}
           <NavBar />
-          
+          <h1 id="center">Create a Recipe</h1>
+          <div className="create-display">
+          <form onSubmit={this.createRecipeData}>
+            <div className='create-container'>
+              <div className="create-1">
+                  <label id="label-input">Recipe Title:</label>
+                  <input name="name" placeholder="Recipe title..."/>
+                
+                  {/* <div className="box-3"> */}
+                    <label id="label-input">Ingredients:</label>
+                    <input name="ingredients" placeholder="Ingredients"/>
+                  {/* </div> */}
+                  {/* <div className="box-5"> */}
+                    <label id="label-input">Directions:  </label>
+                    {/* <input id="input-directions" type="textarea" name="directions" placeholder="Directions"/> */}
+                    <textarea id="input-directions" name="directions" placeholder="Directions" />
+                  {/* </div> */}
+              </div>
+            
 
-          <form className="flex-column" onSubmit={this.createRecipeData}>
-            
-            <h1>Create a Recipe</h1>
-            
-            <label>Recipe Title</label>
-            <input name="name" placeholder="Recipe title..."/>
-            <label>Ingredients</label>
-            <input name="ingredients" placeholder="Ingredients"/>
-            <label>Directions</label>
-            <input name="directions" placeholder="Directions"/>
-            <label>Picture</label>
-            <input name="picture_url" placeholder="Insert Link here"/>
-            <label>Categories</label>
-            <input name="categories" placeholder="CategoryType"/>
-            <label>Cuisine</label>
-            <input name="cuisine" placeholder="CuisineType"/>
-            <button>Submit</button>
+              <div className="create-2">
+                <label id="label-input">Picture:</label>
+                <input name="picture_url" placeholder="Insert Link here"/>
+                
+                <div className="box-4">
+                <label id="label-input">Categories:</label>
+                <input name="categories" placeholder="CategoryType"/>
+                </div>
+                <div className="box-6">
+                <label id="label-input">Cuisine:</label>
+                <input name="cuisine" placeholder="CuisineType"/>
+                </div>
+              </div>
+            </div>
+        
+              <br />
+              <div id="center">
+            <button id="button-submit">Submit</button>
+              </div>
+            <br />
           </form>
 
-
+        </div>
         </div>
     );
   }
