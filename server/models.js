@@ -73,7 +73,7 @@ const Cuisines = db.define('cuisine',{
 })
 const Comments = db.define('comment',{
   name:{
-    type: Sequelize.STRING
+    type: Sequelize.TEXT
   }
 })
 /* ************************************************* */
