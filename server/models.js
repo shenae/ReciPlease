@@ -79,7 +79,7 @@ const Comments = db.define('comment',{
 /* ************************************************* */
 /* *** DEFINE RELATIONSHIP *** */
 /* ** Users => Receipies (one to many) ** */
-Users.hasMany(Receipies);
+Users.hasMany(Receipies,{onDelete: 'cascade'});
 Receipies.belongsTo(Users);
 /* ************************************************* */
 /* ** Cuisines => Receipies (many to many) ** */

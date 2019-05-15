@@ -15,7 +15,7 @@ receipeRoute.get('/:id',async(req,res)=>{
   try{
     const id = req.params.id;
     const particularReceipe = await Receipies.findByPk(id,{
-      include:[Cuisines]
+      include:[{all: true}]
     });
     res.json(particularReceipe);
   }catch(e){
