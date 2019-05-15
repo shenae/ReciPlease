@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import NavBar from '../NavBar/NavBar'
   
 class SignUp extends Component {
 
   render() {
+    if (localStorage.getItem("token")) {this.props.navigateHome();this.props.history.go()}
     return (
         <div>
-          {/*navbar*/}
-          <NavBar />
           <div className="signup-display">
           <div className="flex-column">
           {/*Main*/}

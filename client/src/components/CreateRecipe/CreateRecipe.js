@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
-import NavBar from '../NavBar/NavBar'
 import { createRecipe} from '../../services/axios'
   
 class CreateRecipe extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      arrayList: [1]
+    };
+  }
 
   createRecipeData = async (e) => {
     e.preventDefault();
@@ -11,21 +17,45 @@ class CreateRecipe extends Component {
     "name": formData.get("name"),
     "picture_url":formData.get("picture_url"),
     "rating":0,
-    "ingredients":[formData.get("ingredients")],
+    "ingredients":formData.getAll("ingredients"),
     "directions":formData.get("directions"),
     "categories":formData.get("categories"),
-    "cuisine": formData.get("cuisine"),
-    "token": localStorage.getItem("token")
+    "cuisine": formData.get("cuisine")
     };
-    const recipe = await createRecipe(data);
-    await this.props.handleFetch();
+    const header={
+      headers: {
+        token: `${localStorage.getItem('token')}`
+      }
+    }
+    const resp = await createRecipe(data,header);
+    if(resp){
+      await this.props.handleFetch();
+      this.props.navigateHome();
+      this.props.history.go();
+    }
+    else{
+      console.log(resp);
+      console.log("An error occured");
+    }
+  }
+
+  addButton = (e) =>{
+    e.preventDefault();
+    const arrayList=this.state.arrayList;
+    arrayList.push(1);
+    this.setState({arrayList})
+  }
+  removeButton = (e,key) =>{
+    e.preventDefault();
+    const arrayList=this.state.arrayList;
+    arrayList.splice(1,1);
+    this.setState({arrayList})
   }
 
   render() {
+    const {arrayList} = this.state
     return (
         <div>
-          {/*navbar*/}
-          <NavBar />
           <h1 id="center">Create a Recipe</h1>
           <div className="create-display">
           <form onSubmit={this.createRecipeData}>
@@ -34,10 +64,10 @@ class CreateRecipe extends Component {
                   <label id="label-input">Recipe Title:</label>
                   <input name="name" placeholder="Recipe title..."/>
                     <label id="label-input">Ingredients:</label>
-                    <input name="ingredients" placeholder="Ingredients"/>
-              
+                    <button onClick={(e)=>this.addButton(e)}>+</button>
+            <button onClick={(e)=>this.removeButton(e,e.target.name)}>-</button>
+            {<div>{arrayList.map((array)=><input name="ingredients" placeholder="ingredients"/>)}</div>}
                     <label id="label-input">Directions:  </label>
-                    {/* <input id="input-directions" type="textarea" name="directions" placeholder="Directions"/> */}
                   <textarea id="input-directions" name="directions" placeholder="Directions" />
               </div>
               <div className="create-2">

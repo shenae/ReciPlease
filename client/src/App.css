@@ -46,6 +46,7 @@ input {
 	color: goldenrod;
 	border-color: goldenrod;
 	border-radius: 25px;
+	height: 50px;
 }
 
 #button-login {
