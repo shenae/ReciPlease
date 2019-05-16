@@ -53,7 +53,8 @@ receipeRoute.post('/create',async(req,res)=>{
     res.send('receipie created'); 
      // ************* //   
   }catch(e){
-    res.json({ msg: e.status });
+    console.log("message", e.message);
+    res.json({ message: e.message });
   }
 })
 receipeRoute.delete('/delete/:id',async(req,res)=>{

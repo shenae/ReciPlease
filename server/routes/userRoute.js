@@ -24,7 +24,7 @@ usersRoute.post('/signup', async(req, res, next) => {
       const createdUser = await Users.create(req.body);
       const { email, id } = createdUser;
       const token = jwtSign({email,id})
-      return res.json({token})
+      return res.json({token,id})
     } catch(error) {
       return next(error)
     }
@@ -42,7 +42,7 @@ usersRoute.post('/login',async(req,res,next)=>{
         if ( error ) return next(error)
         const { email, id } = user
         const token = jwtSign({email,id})
-        return res.json({token})
+        return res.json({token,id})
       })
 
     } catch(error) {
