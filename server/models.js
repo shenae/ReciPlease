@@ -53,7 +53,7 @@ const Receipies = db.define('receipie',{
     allowNull:false
   },
   directions:{
-    type:Sequelize.STRING,
+    type:Sequelize.TEXT,
     allowNull:false
   },
   categories:{
