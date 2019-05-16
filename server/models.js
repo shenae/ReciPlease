@@ -52,9 +52,9 @@ const Receipies = db.define("receipie", {
     type: Sequelize.ARRAY(Sequelize.TEXT),
     allowNull: false
   },
-  directions: {
-    type: Sequelize.STRING,
-    allowNull: false
+  directions:{
+    type:Sequelize.TEXT,
+    allowNull:false
   },
   categories: {
     type: Sequelize.STRING
