@@ -8,7 +8,7 @@ class RecipeList extends Component {
     const {handleDelete,history,handleFetch} = this.props;
 
     return (
-        <div>
+        <div className = {'recipe-img'}>
           <div onClick={(e)=>{handleFetch(e,id);history.push(`/recipe/${id}`)}}>
             <img alt="recipe" src={picture_url}/>
             <p>{name}</p>

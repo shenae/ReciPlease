@@ -41,6 +41,7 @@ class App extends Component {
   fetchOneRecipeData = async (e,id) => {
     e.preventDefault();
     const recipe = await fetchOneRecipe(id);
+    console.log(recipe)
     this.setState({
       recipe
     });

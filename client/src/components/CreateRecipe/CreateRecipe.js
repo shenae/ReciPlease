@@ -6,8 +6,24 @@ class CreateRecipe extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      arrayList: [1]
+      arrayList: [1],
+      file:'',
+      picture_url:'',
+      preview:false
     };
+  }
+  handleUpload(e){
+    e.preventDefault();
+    let reader = new FileReader();
+    let file = e.target.files[0];
+    reader.onloadend = ()=>{
+      this.setState({
+        file:file,
+        picture_url:reader.result,
+        preview:true
+      })
+    }
+    reader.readAsDataURL(file);
   }
 
   createRecipeData = async (e) => {
@@ -15,7 +31,7 @@ class CreateRecipe extends Component {
     const formData = new FormData(e.target);
     const data = {
     "name": formData.get("name"),
-    "picture_url":formData.get("picture_url"),
+    "picture_url":this.state.picture_url,
     "rating":0,
     "ingredients":formData.getAll("ingredients"),
     "directions":formData.get("directions"),
@@ -31,7 +47,6 @@ class CreateRecipe extends Component {
     if(resp){
       await this.props.handleFetch();
       this.props.navigateHome();
-      this.props.history.go();
     }
     else{
       console.log(resp);
@@ -71,9 +86,6 @@ class CreateRecipe extends Component {
                   <textarea id="input-directions" name="directions" placeholder="Directions" />
               </div>
               <div className="create-2">
-                <label id="label-input">Picture:</label>
-                <input name="picture_url" placeholder="Insert Link here"/>
-                
                 <div className="box-4">
                 <label id="label-input">Categories:</label>
                 <input name="categories" placeholder="CategoryType"/>
@@ -91,7 +103,9 @@ class CreateRecipe extends Component {
               </div>
             <br />
           </form>
-
+          <img src={this.state.picture_url}/>
+          <input ref={fileInput => this.fileInput = fileInput} style={{ display: 'none' }} type="file" onChange={e => this.handleUpload(e)} />
+          <button onClick={() => this.fileInput.click()}>upload file</button>
         </div>
         </div>
     );

@@ -1,10 +1,9 @@
 .App {
 	text-align: center;
-	width: 100%;
 }
 
-.App img{
-	width:300px;
+.flex-column img{
+	width:600px;
 }
 
 nav li{
@@ -45,8 +44,8 @@ input {
 	font-size: 15px;
 	color: goldenrod;
 	border-color: goldenrod;
-	border-radius: 25px;
 	height: 50px;
+	border-radius: 25px;
 }
 
 #button-login {
@@ -93,8 +92,7 @@ input {
 	display:flex;
 	width: 100%;
 	flex-direction: column;
-	align-items: center;  
-	flex-wrap: wrap;  
+	align-items: center;
 }
 
 .flex{
@@ -109,8 +107,20 @@ input {
 	padding: 10px;
 	justify-content: center;
 }
-.recipe-list {
-	width: 30%;
+
+.home-recipe-list {
+	display:flex;
+	/* width: 100%; */
+	flex-wrap: wrap;
+	justify-content: space-between;  
+	padding:10%;
+
+}
+
+
+
+.recipe-img img{
+	width:300px;
 }
 
 .recipe-display {
@@ -152,11 +162,13 @@ input {
 	width: 700px;
 	background-color: goldenrod;
 	border-radius: 25px;
+	
 }
 .create-container {
 	display: flex;
 	justify-content: center;
 	padding: 10px;
+	justify-content:center;
 }
 
 #input-directions {

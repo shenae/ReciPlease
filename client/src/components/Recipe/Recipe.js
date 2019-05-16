@@ -15,7 +15,7 @@ class Recipe extends Component {
             <img alt="recipe" src={recipe?recipe.picture_url:null}/>
             <div className="recipe-name-display">
             <h1>{recipe?recipe.name:null}</h1>
-            <h2>Created by:</h2>
+            <h2>Created by: {recipe?recipe.user.name:null}</h2>
             </div>
 
             {recipe?

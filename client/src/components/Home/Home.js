@@ -24,8 +24,8 @@ class Home extends Component {
   render() {
     const {recipes,handleDelete,history,handleFetch}= this.props;
     return (
-        <div>
-            <div className="flex-column App">
+        <div className="flex-column">
+            <div className="home-recipe-list">
           {/*Main*/}
             { recipes.length ? recipes.map((recipe, key) => {
             return <RecipeList key={key} recipe={recipe} handleDelete={handleDelete} handleFetch={handleFetch} history={history}/>

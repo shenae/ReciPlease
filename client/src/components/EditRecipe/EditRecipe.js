@@ -5,8 +5,24 @@ class EditRecipe extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      arrayList: [1]
+      arrayList: [1],
+      file:'',
+      picture_url:'',
+      preview:false
     };
+  }
+  handleUpload(e){
+    e.preventDefault();
+    let reader = new FileReader();
+    let file = e.target.files[0];
+    reader.onloadend = ()=>{
+      this.setState({
+        file:file,
+        picture_url:reader.result,
+        preview:true
+      })
+    }
+    reader.readAsDataURL(file);
   }
 
   editRecipeData = async (e,id)=>{
@@ -14,7 +30,7 @@ class EditRecipe extends Component {
     const formData = new FormData(e.target);
     const data = {
     "name": formData.get("name"),
-    "picture_url":formData.get("picture_url"),
+    "picture_url":this.state.picture_url,
     "rating":0,
     "ingredients":formData.getAll("ingredients"),
     "directions":formData.get("directions"),
@@ -30,7 +46,6 @@ class EditRecipe extends Component {
     if(resp){
       await this.props.handleFetch();
       this.props.navigateHome();
-      this.props.history.go();
     }
     else{
       console.log(resp);
@@ -77,15 +92,13 @@ class EditRecipe extends Component {
             </div>
 
             <div className="create-2">
-                <label id="label-input">Picture:</label>
-                <input name="picture_url" defaultValue={recipe?recipe.picture_url:null} placeholder="Insert Link here"/>
                 <div className="box-4">
-                <label id="label-input">Categories:</label>
-                <input name="categories" defaultValue={recipe?recipe.categories:null} placeholder="CategoryType"/>
+                  <label id="label-input">Categories:</label>
+                  <input name="categories" defaultValue={recipe?recipe.categories:null} placeholder="CategoryType"/>
                 </div>
                 <div className="box-6">
-                <label id="label-input">Cuisine:</label>
-                <input name="cuisine" defaultValue={recipe?recipe.cuisines[0].name:null} placeholder="CuisineType"/>
+                  <label id="label-input">Cuisine:</label>
+                  <input name="cuisine" defaultValue={recipe?recipe.cuisines[0].name:null} placeholder="CuisineType"/>
                 </div>
             </div>
           </div>
@@ -94,6 +107,9 @@ class EditRecipe extends Component {
             <button id="button-submit">Submit</button>
             </div>
         </form>
+        <img src={this.state.picture_url}/>
+          <input ref={fileInput => this.fileInput = fileInput} defaultValue={this.state.picture_url?this.state.picture_url:null} style={{ display: 'none' }} type="file" onChange={e => this.handleUpload(e)} />
+          <button onClick={() => this.fileInput.click()}>upload file</button>
         </div>
       </div>
     );
