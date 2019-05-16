@@ -1,118 +1,144 @@
-import React, { Component } from 'react';
-import { createRecipe} from '../../services/axios'
-  
+import React, { Component } from "react";
+import { createRecipe } from "../../services/axios";
+
 class CreateRecipe extends Component {
-  
   constructor(props) {
     super(props);
     this.state = {
       arrayList: [1],
-      file:'',
-      picture_url:'',
-      preview:false
+      file: "",
+      picture_url: "",
+      preview: false
     };
   }
-  handleUpload(e){
+  handleUpload(e) {
     e.preventDefault();
     let reader = new FileReader();
     let file = e.target.files[0];
-    reader.onloadend = ()=>{
+    reader.onloadend = () => {
       this.setState({
-        file:file,
-        picture_url:reader.result,
-        preview:true
-      })
-    }
+        file: file,
+        picture_url: reader.result,
+        preview: true
+      });
+    };
     reader.readAsDataURL(file);
   }
 
-  createRecipeData = async (e) => {
+  createRecipeData = async e => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = {
-    "name": formData.get("name"),
-    "picture_url":this.state.picture_url,
-    "rating":0,
-    "ingredients":formData.getAll("ingredients"),
-    "directions":formData.get("directions"),
-    "categories":formData.get("categories"),
-    "cuisine": formData.get("cuisine")
+      name: formData.get("name"),
+      picture_url: this.state.picture_url,
+      rating: 0,
+      ingredients: formData.getAll("ingredients"),
+      directions: formData.get("directions"),
+      categories: formData.get("categories"),
+      cuisine: formData.get("cuisine")
     };
-    const header={
+    const header = {
       headers: {
-        token: `${localStorage.getItem('token')}`
+        token: `${localStorage.getItem("token")}`
       }
-    }
-    const resp = await createRecipe(data,header);
-    if(resp){
+    };
+    const resp = await createRecipe(data, header);
+    if (resp) {
       await this.props.handleFetch();
       this.props.navigateHome();
-    }
-    else{
+    } else {
       console.log(resp);
       console.log("An error occured");
     }
-  }
+  };
 
-  addButton = (e) =>{
+  addButton = e => {
     e.preventDefault();
-    const arrayList=this.state.arrayList;
+    const arrayList = this.state.arrayList;
     arrayList.push(1);
-    this.setState({arrayList})
-  }
-  removeButton = (e,key) =>{
+    this.setState({ arrayList });
+  };
+  removeButton = (e, key) => {
     e.preventDefault();
-    const arrayList=this.state.arrayList;
-    arrayList.splice(1,1);
-    this.setState({arrayList})
-  }
+    const arrayList = this.state.arrayList;
+    arrayList.splice(1, 1);
+    this.setState({ arrayList });
+  };
 
   render() {
-    const {arrayList} = this.state
+    const { arrayList } = this.state;
     return (
-        <div>
-          <h1 id="center">Create a Recipe</h1>
-          <div className="create-display">
+      <div>
+        <h1 id="center">Create a Recipe</h1>
+        <div className="create-display">
           <form onSubmit={this.createRecipeData}>
-            <div className='create-container'>
+            <div className="create-container">
               <div className="create-1">
-                  <label>Recipe Title:</label>
-                  <input name="name" placeholder="Recipe title..."/>
-                    <label>Ingredients:</label>
-                    <button onClick={(e)=>this.addButton(e)}>+</button>
-            <button onClick={(e)=>this.removeButton(e,e.target.name)}>-</button>
-            {<div>{arrayList.map((array)=><input name="ingredients" placeholder="ingredients"/>)}</div>}
-                    <label>Directions:  </label>
-                  <textarea id="input-directions" name="directions" placeholder="Directions" />
+                <label>Recipe Title:</label>
+                <input name="name" placeholder="Recipe title..." />
+                <label>Ingredients:</label>
+                <button onClick={e => this.addButton(e)}>+</button>
+                <button onClick={e => this.removeButton(e, e.target.name)}>
+                  -
+                </button>
+                {
+                  <div>
+                    {arrayList.map(array => (
+                      <input name="ingredients" placeholder="ingredients" />
+                    ))}
+                  </div>
+                }
+                <label>Directions: </label>
+                <textarea
+                  id="input-directions"
+                  name="directions"
+                  placeholder="Directions"
+                />
               </div>
               <div className="create-2">
                 <div className="box-4">
-                <label>Categories:</label>
-                <input name="categories" placeholder="CategoryType"/>
+                  <label>Categories:</label>
+                  <input name="categories" placeholder="CategoryType" />
                 </div>
                 <div className="box-6">
-                <label>Cuisine:      </label>
-                <input name="cuisine" placeholder="CuisineType"/>
+                  <label>Cuisine: </label>
+                  <input name="cuisine" placeholder="CuisineType" />
                 </div>
-                {this.state.picture_url?<img id="img-create" src={this.state.picture_url}/>:null}
-          <input ref={fileInput => this.fileInput = fileInput} style={{ display: 'none' }} type="file" onChange={e => this.handleUpload(e)} />
-          <div id="center">
-          <button id="button-submit" onClick={(e) => {this.fileInput.click();e.preventDefault();e.stopPropagation();}}>Upload image file</button>
-          </div>
+                {this.state.picture_url ? (
+                  <img
+                    id="img-create"
+                    alt="thumbnail"
+                    src={this.state.picture_url}
+                  />
+                ) : null}
+                <input
+                  ref={fileInput => (this.fileInput = fileInput)}
+                  style={{ display: "none" }}
+                  type="file"
+                  onChange={e => this.handleUpload(e)}
+                />
+                <div id="center">
+                  <button
+                    id="button-submit"
+                    onClick={e => {
+                      this.fileInput.click();
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }}
+                  >
+                    Upload image file
+                  </button>
+                </div>
               </div>
             </div>
-    
-        
-              <br />
-              <div id="center">
-            <button id="button-submit">Submit</button>
-              </div>
+            <br />
+            <div id="center">
+              <button id="button-submit">Submit</button>
+            </div>
             <br />
           </form>
-          </div>
-    
-  
         </div>
+      </div>
     );
   }
 }
