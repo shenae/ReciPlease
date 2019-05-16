@@ -25,7 +25,7 @@ receipeRoute.get('/:id',async(req,res)=>{
 receipeRoute.post('/create',async(req,res)=>{
   try{
     console.log(req.body.picture_url, '** created recipe **')
-    let decoded = jwtDecode(req.body.token);
+    let decoded = jwtDecode(req.headers.token);
     console.log(decoded,'inside post method')
     const userCreatedReceipie = await Users.findOne({
       where:{
@@ -58,7 +58,7 @@ receipeRoute.post('/create',async(req,res)=>{
 })
 receipeRoute.delete('/delete/:id',async(req,res)=>{
   try{
-    let decoded = jwtDecode(req.body.token);
+    let decoded = jwtDecode(req.headers.token);
     console.log(decoded,'in delete')
     const userCreatedReceipie = await Users.findOne({
       where:{
@@ -79,7 +79,7 @@ receipeRoute.delete('/delete/:id',async(req,res)=>{
 })
 receipeRoute.put('/edit/:id',async(req,res)=>{
   try{
-    let decoded = jwtDecode(req.body.token);
+    let decoded = jwtDecode(req.headers.token);
     const userCreatedReceipie = await Users.findOne({
       where:{
         email:decoded.email
