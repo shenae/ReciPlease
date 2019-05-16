@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import RecipeList from '../RecipeList/RecipeList'
+import RecipeList from '../RecipeList/RecipeList';
 	
 class Home extends Component {
 
@@ -28,7 +28,7 @@ class Home extends Component {
             <div className="home-recipe-list">
           {/*Main*/}
             { recipes.length ? recipes.map((recipe, key) => {
-            return <RecipeList key={key} recipe={recipe} handleDelete={handleDelete} handleFetch={handleFetch} history={history}/>
+            return <RecipeList className="recipe-list" key={key} recipe={recipe} handleDelete={handleDelete} handleFetch={handleFetch} history={history}/>
         }) : <h1>Fetching recipes...</h1> }
           </div>
           

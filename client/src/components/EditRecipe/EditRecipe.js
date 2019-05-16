@@ -68,7 +68,8 @@ class EditRecipe extends Component {
 
   componentDidMount() {
     const arrayList=this.props.recipe.ingredients;
-    this.setState({arrayList});
+    const picture_url=this.props.recipe.picture_url;
+    this.setState({arrayList,picture_url});
   }
 
   render() {
@@ -81,25 +82,30 @@ class EditRecipe extends Component {
           <h1>Update a Recipe</h1>
           <div className='create-container'>
           <div className="create-1">
-            <label id="label-input">Recipe Title:</label>
+            <label>Recipe Title:</label>
             <input name="name" defaultValue={recipe?recipe.name:null} placeholder="Recipe title..."/>
-            <label id="label-input">Ingredients:</label>
+            <label>Ingredients:</label>
             <button onClick={(e)=>this.addButton(e)}>+</button>
             <button onClick={(e)=>this.removeButton(e,e.target.name)}>-</button>
             {<div>{recipe.ingredients.map((ingredient,key)=><input name="ingredients" key={`${key}`} defaultValue={ingredient} placeholder="ingredients"/>)}</div>}
-            <label id="label-input">Directions:</label>
+            <label>Directions:</label>
             <textarea id="input-directions" name="directions" defaultValue={recipe?recipe.directions:null} placeholder="Directions"/>
             </div>
 
             <div className="create-2">
                 <div className="box-4">
-                  <label id="label-input">Categories:</label>
+                  <label>Categories:</label>
                   <input name="categories" defaultValue={recipe?recipe.categories:null} placeholder="CategoryType"/>
                 </div>
                 <div className="box-6">
-                  <label id="label-input">Cuisine:</label>
+                  <label>Cuisine:</label>
                   <input name="cuisine" defaultValue={recipe?recipe.cuisines[0].name:null} placeholder="CuisineType"/>
                 </div>
+                <img id="img-create" src={this.state.picture_url}/>
+          <input ref={fileInput => this.fileInput = fileInput} style={{ display: 'none' }} type="file" onChange={e => this.handleUpload(e)} />
+          <div id="center">
+          <button id="button-submit" onClick={(e) => {this.fileInput.click();e.preventDefault();e.stopPropagation();}}>Upload image file</button>
+          </div>
             </div>
           </div>
           <br />
@@ -107,9 +113,6 @@ class EditRecipe extends Component {
             <button id="button-submit">Submit</button>
             </div>
         </form>
-        <img src={this.state.picture_url}/>
-          <input ref={fileInput => this.fileInput = fileInput} defaultValue={this.state.picture_url?this.state.picture_url:null} style={{ display: 'none' }} type="file" onChange={e => this.handleUpload(e)} />
-          <button onClick={() => this.fileInput.click()}>upload file</button>
         </div>
       </div>
     );
