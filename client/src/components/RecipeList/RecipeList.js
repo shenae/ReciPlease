@@ -4,14 +4,16 @@ class RecipeList extends Component {
 
   render() {
 
-    const {categories, cuisines, directions, id, ingredients, name, picture_url,rating,userId} = this.props.recipe;
-    const {handleDelete} = this.props;
+    const { id, name, picture_url,userId} = this.props.recipe;
+    const {handleDelete,history,handleFetch} = this.props;
 
     return (
         <div>
-          <img src={picture_url}/>
-          <p>{name}</p>
-          <button onClick={e => handleDelete(e, id)}>DELETE</button>
+          <div onClick={(e)=>{handleFetch(e,id);history.push(`/recipe/${id}`)}}>
+            <img alt="recipe" src={picture_url}/>
+            <p>{name}</p>
+          </div>
+          {localStorage.getItem("id")==userId?<button onClick={e => handleDelete(e, id)}>DELETE</button>:null}
         </div>
     );
   }

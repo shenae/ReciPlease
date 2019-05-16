@@ -1,52 +1,34 @@
 import React, { Component } from 'react';
-import Home from '../Home/Home';
-import Recipe from '../Recipe/Recipe';
-import CreateRecipe from '../CreateRecipe/CreateRecipe';
-import SignUp from '../SignUp/SignUp';
-import LogIn from '../LogIn/LogIn';
-// import { fetchRecipes, createRecipe, deleteRecipe, editRecipe, fetchCuisines, fetchOneCuisine, fetchUser, logIn, signUp } from '../services/axios';
 	
 class NavBar extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-
   render() {
+    const {onChange}=this.props;
     return (
         <div>
           <nav className="flex">
-            <h1 id="nav-title">ReciPlease<i class="fas fa-utensils fa-1x"></i> <i class="fas fa-book fa-1x"></i></h1>
-            {/* <button id="button-login">Login/Register</button> */}
-              {/* <button id="button-login" onClick={this.submitLogOut}>LOG OUT</button>
-              <button id="button-login" onClick={this.navigateHome}>LOGIN</button> */}
+            <div onClick={()=>{this.props.navigateHome()}}>
+            <h1 id="nav-title">ReciPlease<i className="fas fa-utensils fa-1x"></i> <i className="fas fa-book fa-1x"></i></h1>
+            </div>
             <br />
             </nav>
-            {/* <div className="flex"> */}
-          
-          {/* </div> */}
-          {/*Filter&CreateRecipe*/}
+
           <div className="flex-row">
-            <form>
-              <label id="label-nav">Search</label>
-              <input name="recipeSearch" onChange={this.onChange} placeholder="Search for Recipes"/>  
-              <button id="button-submit">Click me</button> 
-            </form>
-           
-            <button id="button-create-recipe" onClick={this.props.navigateToCreateRecipe}>Create Recipe</button>
-            <form>
-              <label id="label-nav">Filter</label>
-              <input name="recipeFilter" onChange={this.onChange} placeholder="Filter Recipes"/>
-              <button id="button-submit">Click me</button>
+          <button onClick={()=>this.props.navigateBack()}>BACK</button>
+            <form onSubmit={(e)=>{e.preventDefault();this.props.history.push('/search')}}>
+              <input name="recipeSearch" onChange={onChange} placeholder="Search for Recipes"/>  
+              <button id="button-submit">Search</button> 
             </form>
             </div>
-          {/*Auth*/}
-          {/*
-            <button>Login</button>
-            <button>Register</button>
-          */}
+            {!localStorage.getItem("token")?
+            <div>
+              <button id="button-login" onClick={this.props.navigateLogIn}>LOGIN</button>
+              <button id="button-signup" onClick={this.props.navigateSignUp}>SIGN UP</button>
+            </div>
+            :<div>
+              <button id="button-logout" onClick={(e)=>{this.props.submitLogOut(e);this.props.history.go()}}>LOG OUT</button>
+              <button id="button-create-recipe" onClick={this.props.navigateCreateRecipe}>CREATE RECIPE</button>
+            </div>}
       
         </div>
     );

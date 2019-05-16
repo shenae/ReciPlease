@@ -1,37 +1,42 @@
 import React, { Component } from 'react';
-import NavBar from '../NavBar/NavBar'
   
 class Recipe extends Component {
-
+  componentDidMount(){
+    const e = document.createEvent("MouseEvent");
+    this.props.handleFetch(e,this.props.match.params.id);
+  }
   render() {
+    const {recipe,history,navigateHome,handleDelete}=this.props
     return (
         <div>
-          {/*navbar*/}
-          <NavBar />
 
           <div className="flex-column">
           {/*Main*/}
-            <img src="http://via.placeholder.com/640x360"/>
+            <img alt="recipe" src={recipe?recipe.picture_url:null}/>
             <div className="recipe-name-display">
-            <h1>Recipe Title</h1>
-            <h2>Username</h2>
+            <h1>{recipe?recipe.name:null}</h1>
+            <h2>Created by:</h2>
             </div>
 
+            {recipe?
+              (localStorage.getItem("id")==recipe.userId?
+                <div>
+                  <button id="button-submit" onClick={(e)=>{history.push(`/editrecipe/${recipe.id}`)}}>EDIT</button>
+                  <button id="button-submit" onClick={e => {handleDelete(e, recipe.id).then(resp=>resp?navigateHome():null)}}>DELETE</button>
+                </div>
+                :null)
+              :null}
+              <br/>
         <div className="recipe-display">
         <div className="recipe-ingredients">
             <h2>Ingredients</h2>
             <ul>
-              <li>Ingredient 1 Lorem ipsum dolor</li>
-              <li>Ingredient 2 noluisse incorrupte</li>
-              <li>Ingredient 3 per probo inimicus</li>
-              <li>Ingredient 4 saepe copiosae</li>
-              <li>Ingredient 5 oluptaria intellegebat</li>
+              {recipe?recipe.ingredients.map((ingredient,key)=><li key={`${key}`}>{ingredient}</li>):null}
             </ul>
             </div>
             <div className="recipe-directions">
             <h2>Directions</h2>
-            <p>Lorem ipsum dolor sit amet, noluisse incorrupte te duo, per probo inimicus comprehensam eu. Mel saepe copiosae no. Vel ea suscipit iracundia hendrerit, eos ut putent aeterno equidem. Has eu sapientem voluptaria intellegebat, vim ne iriure inermis detracto. Ut semper fuisset mea, alia minim mea an. Ut aliquam invidunt voluptatibus duo, regione definiebas eos ad.
-            </p>
+            <p>{recipe?recipe.directions:null}</p>
             </div>
             </div>
           </div>

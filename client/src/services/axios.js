@@ -15,10 +15,20 @@ export const fetchRecipes = async () => {
  }
 }
 
-//needs to be tested
-export const createRecipe = async (data) => {
+export const fetchOneRecipe = async (id) => {
  try {
-   const resp = await api.post('/receipies/create', data);
+   const resp = await api.get(`/receipies/${id}`)
+   console.log("Fetching one recipe...")
+   return resp.data;
+ } catch (e) {
+   console.log(e);
+ }
+}
+
+//needs to be tested
+export const createRecipe = async (data,header) => {
+ try {
+   const resp = await api.post('/receipies/create', data,header);
    console.log("Creating recipe...")
    return resp;
  } catch (e) {
@@ -27,9 +37,10 @@ export const createRecipe = async (data) => {
 }
 
 //needs to be tested
-export const deleteRecipe = async (id) => {
+export const deleteRecipe = async (id,data) => {
  try {
-   const resp = await api.delete(`/receipies/delete/${id}`);
+   const resp = await api.delete(`/receipies/delete/${id}`, data);
+   console.log(`/receipies/delete/${id}`, data);
    console.log("Deleting recipe...")
    return resp;
  } catch (e) {
@@ -38,9 +49,9 @@ export const deleteRecipe = async (id) => {
 }
 
 //needs to be tested
-export const editRecipe = async (id,data) => {
+export const editRecipe = async (id,data,header) => {
  try {
-   const resp = await api.put(`/receipies/edit/${id}`,data);
+   const resp = await api.put(`/receipies/edit/${id}`,data, header);
    console.log("Editing recipe...")
    return resp;
  } catch (e) {

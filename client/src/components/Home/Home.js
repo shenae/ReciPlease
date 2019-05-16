@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import RecipeList from '../RecipeList/RecipeList'
-import NavBar from '../NavBar/NavBar'
 	
 class Home extends Component {
 
@@ -23,17 +22,13 @@ class Home extends Component {
 
 
   render() {
-    const {recipes,handleDelete}= this.props;
+    const {recipes,handleDelete,history,handleFetch}= this.props;
     return (
         <div>
-          {/*navbar*/}
-          <NavBar
-          navigateToCreateRecipe={this.props.navigateToCreateRecipe}/>
-
-          <div className="flex-column App">
+            <div className="flex-column App">
           {/*Main*/}
-            { recipes ? recipes.map((recipe, key) => {
-            return <RecipeList className="recipe-list" key={key} recipe={recipe} handleDelete={handleDelete}/>
+            { recipes.length ? recipes.map((recipe, key) => {
+            return <RecipeList key={key} recipe={recipe} handleDelete={handleDelete} handleFetch={handleFetch} history={history}/>
         }) : <h1>Fetching recipes...</h1> }
           </div>
           
