@@ -14,7 +14,7 @@ class NavBar extends Component {
             </nav>
 
           <div className="flex-row">
-          <button onClick={()=>this.props.navigateBack()}>BACK</button>
+          <button id="button-back" onClick={()=>this.props.navigateBack()}>BACK</button>
             <form onSubmit={(e)=>{e.preventDefault();this.props.history.push('/search')}}>
               <input name="recipeSearch" onChange={onChange} placeholder="Search for Recipes"/>  
               <button id="button-submit">Search</button> 

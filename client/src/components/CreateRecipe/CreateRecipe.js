@@ -76,26 +76,32 @@ class CreateRecipe extends Component {
           <form onSubmit={this.createRecipeData}>
             <div className='create-container'>
               <div className="create-1">
-                  <label id="label-input">Recipe Title:</label>
+                  <label>Recipe Title:</label>
                   <input name="name" placeholder="Recipe title..."/>
-                    <label id="label-input">Ingredients:</label>
+                    <label>Ingredients:</label>
                     <button onClick={(e)=>this.addButton(e)}>+</button>
             <button onClick={(e)=>this.removeButton(e,e.target.name)}>-</button>
             {<div>{arrayList.map((array)=><input name="ingredients" placeholder="ingredients"/>)}</div>}
-                    <label id="label-input">Directions:  </label>
+                    <label>Directions:  </label>
                   <textarea id="input-directions" name="directions" placeholder="Directions" />
               </div>
               <div className="create-2">
                 <div className="box-4">
-                <label id="label-input">Categories:</label>
+                <label>Categories:</label>
                 <input name="categories" placeholder="CategoryType"/>
                 </div>
                 <div className="box-6">
-                <label id="label-input">Cuisine:</label>
+                <label>Cuisine:      </label>
                 <input name="cuisine" placeholder="CuisineType"/>
                 </div>
+                {this.state.picture_url?<img id="img-create" src={this.state.picture_url}/>:null}
+          <input ref={fileInput => this.fileInput = fileInput} style={{ display: 'none' }} type="file" onChange={e => this.handleUpload(e)} />
+          <div id="center">
+          <button id="button-submit" onClick={(e) => {this.fileInput.click();e.preventDefault();e.stopPropagation();}}>Upload image file</button>
+          </div>
               </div>
             </div>
+    
         
               <br />
               <div id="center">
@@ -103,10 +109,9 @@ class CreateRecipe extends Component {
               </div>
             <br />
           </form>
-          <img src={this.state.picture_url}/>
-          <input ref={fileInput => this.fileInput = fileInput} style={{ display: 'none' }} type="file" onChange={e => this.handleUpload(e)} />
-          <button onClick={() => this.fileInput.click()}>upload file</button>
-        </div>
+          </div>
+    
+  
         </div>
     );
   }

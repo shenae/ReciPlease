@@ -7,12 +7,10 @@ class SignUp extends Component {
     return (
         <div>
           <div className="signup-display">
-          <div className="flex-column">
+          {/* <div className="flex-column"> */}
           {/*Main*/}
           <form className="flex-column" onSubmit={this.props.handleSignUp}>
-          
           <h1>Sign Up</h1>
-
           <label>First Name</label>
           <input type="text" name="firstName"/>
           <label>Last Name</label>
@@ -23,7 +21,7 @@ class SignUp extends Component {
           <input type="email" name="email" placeholder="Enter your email"/>
           <button id="button-submit">Submit</button>
         </form>
-          </div>
+          {/* </div> */}
           </div>
         </div>
     );

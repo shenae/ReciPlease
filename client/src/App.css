@@ -2,7 +2,7 @@
 	text-align: center;
 }
 
-.flex-column img{
+.flex-column img {
 	width:600px;
 }
 
@@ -14,9 +14,10 @@ nav {
 	background-color: white;
 	border-radius: 25px;
 	border: 2px solid goldenrod;
+	justify-content: center;
 }
 
-nav a{
+nav a {
 	text-decoration: none;
 }
 
@@ -37,7 +38,7 @@ form {
 
 input {
 	margin: 5px;
-	height: 20px;
+	height: 25px;
 }
 
 #button-create-recipe {
@@ -46,6 +47,19 @@ input {
 	border-color: goldenrod;
 	height: 50px;
 	border-radius: 25px;
+}
+
+#button-back {
+	font-size: 15px;
+	color: goldenrod;
+	border-color: goldenrod;
+	border-radius: 25px;
+	height: 50px;
+	width: 90px;
+	padding-top: 15px;
+	padding-bottom: 30px;
+	margin: 15px;
+	align-items: stretch;
 }
 
 #button-login {
@@ -57,7 +71,7 @@ input {
 	width: 90px;
 	padding-top: 15px;
 	padding-bottom: 30px;
-	margin: 40px;
+	margin: 20px;
 	align-items: stretch;
 }
 
@@ -68,7 +82,7 @@ input {
 	border-radius: 25px;
 	height: 50px;
 	padding: 15px;
-	margin: 40px;
+	margin: 20px;
 	align-items: stretch;
 }
 
@@ -79,13 +93,14 @@ input {
 	border-radius: 25px;
 	height: 50px;
 	padding: 15px;
-	margin: 40px;
+	margin: 20px;
 	align-items: stretch;
 }
 
 #button-submit {
-	font-size: 15px;
+	font-size: 20px;
 	margin-top: 5px;
+	
 }
 
 .flex-column{
@@ -109,18 +124,17 @@ input {
 }
 
 .home-recipe-list {
-	display:flex;
-	/* width: 100%; */
+	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;  
-	padding:10%;
-
+	padding:20px;
 }
 
-
-
 .recipe-img img{
-	width:300px;
+	width: 200px;
+	height: 200px;
+	padding: 15px;
+	border-radius: 25px;
 }
 
 .recipe-display {
@@ -148,13 +162,29 @@ input {
 
 .recipe-ingredients {
 	grid-area: ingredients;
-	padding: 10px;
+	padding-left: 20px;
 }
 
 .recipe-directions {
 	grid-area: directions;
-	padding: 10px;
+	padding-right: 20px;
 	word-wrap: break-word;
+}
+.recipe-list-center {
+	display:inline-flex;
+	flex-direction:column;
+}
+.recipe-list-name {
+	font-size: 15px;
+	background-color: white;
+	border: 2px solid black;
+	max-width: 100px;
+	min-width: 50px;
+	padding:0 30px;
+	margin:0 auto;
+	align-items: center;
+	text-align: center;
+	border-radius: 25px;
 }
 
 .create-display {
@@ -169,6 +199,11 @@ input {
 	justify-content: center;
 	padding: 10px;
 	justify-content:center;
+}
+
+#img-create {
+	width: 100px;
+	height: 100px;
 }
 
 #input-directions {
@@ -191,7 +226,7 @@ input {
 
 .signup-display {
 	width: 700px;
-	height: 400px;
+	height: 475px;
 	background-color: goldenrod;
 	border-radius: 25px;
 }
@@ -203,7 +238,7 @@ input {
 	border-radius: 25px;
 }
 
-#label-input {
+label {
 	font-size: 20px;
 	padding: 10px;
 }
