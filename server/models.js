@@ -43,10 +43,7 @@ const Receipies = db.define('receipie',{
     allowNull:false
   },
   picture_url:{
-    type: Sequelize.STRING,
-    validate:{
-      isUrl:true,
-    }
+    type: Sequelize.TEXT
   },
   rating:{
     type:Sequelize.INTEGER

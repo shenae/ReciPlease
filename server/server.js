@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
+let bodyParser = require('body-parser');
 const receipeRoute = require('./routes/recepieRoute');
 const cuisineRoute = require('./routes/cuisineRoute');
 const usersRoute = require('./routes/userRoute');
@@ -10,8 +10,12 @@ const passport  = require('passport');
 const PORT = process.env.PORT || 4567;
 const app = express();
 app.use(morgan('combined'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// bodyParser = {
+//   json: {limit: '50mb', extended: true},
+//   urlencoded: {limit: '50mb', extended: true}
+// };
+app.use(bodyParser.json({limit: '50mb', extended: true}))
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}))
 app.use(cors());
 app.use(passport.initialize());
 app.use('/receipies',receipeRoute);
