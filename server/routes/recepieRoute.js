@@ -24,6 +24,7 @@ receipeRoute.get('/:id',async(req,res)=>{
 })
 receipeRoute.post('/create',async(req,res)=>{
   try{
+    console.log(req.body.picture_url, '** created recipe **')
     let decoded = jwtDecode(req.body.token);
     console.log(decoded,'inside post method')
     const userCreatedReceipie = await Users.findOne({
@@ -33,7 +34,7 @@ receipeRoute.post('/create',async(req,res)=>{
     });
       let createdReceipe = await Receipies.create(req.body);
     // ** cuisine ** //
-    
+    console.log(createdReceipe, '** created recipe **')
     const existingCuisine = await Cuisines.findAll({
       where:{
         name:req.body.cuisine
