@@ -1,3 +1,5 @@
+
+let dotenv = require('dotenv').config();
 const receipies = [
   
   {
@@ -93,7 +95,7 @@ const receipies = [
 const users = [{
   "name":"sidgi",
   "email":"example@gmail.com",
-  "password":"123456"
+  "password":process.env.USER_PASSWORD
 }]
 
 

@@ -7,7 +7,6 @@ const db = new Sequelize({
   dialect: "postgres",
   // ** before I added this cuisine association , auth and etc. worked
   // ** besides user - receipie association
-  operatorsAliases: false,
   define: {
     underscored: true,
     returning: true
