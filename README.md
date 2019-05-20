@@ -75,9 +75,17 @@ An explanation of the major challenges expected while building this app and how 
 - Wireframe for main page: https://wireframe.cc/NuzbTK
 - Wireframe for recipe page: https://wireframe.cc/CjDsxw
 - Wireframe for create recipe page: https://wireframe.cc/uoKzdw
+- Wirefame for login page: https://wireframe.cc/wNtG7r
+
+### Project Prioritization
+- The project board is on Trello: https://trello.com/b/vqyqSAfg/reciplease
+
+### Component Hierarchy
+-
 
 ### Entity Relationship Diagram (ERD)
 https://github.com/shenae/project4/blob/master/Recipes_ERD.jpg
 
 ### Deployment
-This project will be deployed on Heroku.com. 
+The database (back end) for this project is deployed on Heroku at http://reci-please.herokuapp.com/ 
+The user interface (front end) for this project is deployed on Surge at http://reciplease.surge.sh/
