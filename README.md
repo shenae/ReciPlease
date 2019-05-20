@@ -81,7 +81,7 @@ An explanation of the major challenges expected while building this app and how 
 - The project board is on Trello: https://trello.com/b/vqyqSAfg/reciplease
 
 ### Component Hierarchy
--
+- The component hierarchy chart is on this GitHub page: https://github.com/shenae/ReciPlease/blob/master/Component%20Hierarchy%20-%20ReciPlease.docx
 
 ### Entity Relationship Diagram (ERD)
 https://github.com/shenae/project4/blob/master/Recipes_ERD.jpg
